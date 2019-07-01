@@ -7,11 +7,9 @@ import {
          MatInputModule,
          MatToolbarModule        
         } from '@angular/material';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     MatButtonModule, 
     MatCardModule, 
     MatFormFieldModule,
@@ -19,7 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatToolbarModule
   ],
   exports: [
-    FormsModule,
     MatButtonModule, 
     MatCardModule, 
     MatFormFieldModule,
