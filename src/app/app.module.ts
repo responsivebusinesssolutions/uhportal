@@ -1,25 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { AppMaterialModule } from './app-material/app-material.module';
 
-import { MatButtonModule, MatToolbarModule, MatIconModule, MatCardModule } from '@angular/material';
+
+
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
+    AppMaterialModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
