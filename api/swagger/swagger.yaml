@@ -3,19 +3,43 @@ info:
   title: UHPortal API
   description: API description in Markdown.
   version: 1.0.0
-host: api.example.com
-basePath: /v1
+host: localhost:4200
 schemes:
-  - https
+  - http
 paths:
-  /users:
-    get:
+  /users/authenticate/:
+    post:
       summary: Returns a list of users.
       description: Optional extended description in Markdown.
       produces:
         - application/json
+        - application/xml
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "The username for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
       responses:
         200:
-          description: OK
+          description: "successful operation"
+          schema:
+            type: "string"
+          headers:
+            X-Rate-Limit:
+              type: "integer"
+              format: "int32"
+              description: "calls per hour allowed by the user"
+            X-Expires-After:
+              type: "string"
+              format: "date-time"
+              description: "date in UTC when token expires"
+        400:
+          description: "Invalid username/password supplied"
 
           
