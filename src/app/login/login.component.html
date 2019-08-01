@@ -17,7 +17,7 @@
                <input matInput type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                <mat-error *ngIf="submitted && f.password.errors">Password is required</mat-error>
                </mat-form-field>
-               <button mat-raised-button [disabled]="loading" color="primary">
+               <button class="login" mat-raised-button [disabled]="loading" color="primary">
                      <span *ngIf="loading"></span>
                      Login
                </button>
