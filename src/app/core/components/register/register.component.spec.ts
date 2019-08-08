@@ -1,4 +1,4 @@
-import { AppMaterialModule } from './../app-material/app-material.module';
+import { AppMaterialModule } from '../../../app-material/app-material.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RegisterComponent } from './register.component';

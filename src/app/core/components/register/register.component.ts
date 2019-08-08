@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AuthenticationService } from './../_services/authentication.service';
-import { UserService } from './../_helpers/user.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { UserService } from '../../helpers/user.service';
 
 @Component({ 
     selector: 'app-register',
@@ -14,8 +14,8 @@ import { UserService } from './../_helpers/user.service';
  })
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
-    loading = false;
-    submitted = false;
+    isLoading = false;
+    // isSubmitted = false;
     error: string;
 
     constructor(
@@ -40,17 +40,17 @@ export class RegisterComponent implements OnInit {
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
+    get formData() { return this.registerForm.controls; }
 
     onSubmit() {
-        this.submitted = true;
+        // this.isSubmitted = true;
 
         // stop here if form is invalid
         if (this.registerForm.invalid) {
             return;
         }
 
-        this.loading = true;
+        this.isLoading = true;
         this.userService.register(this.registerForm.value)
             .pipe(first())
             .subscribe(
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
                 },
                 error => {
                     this.error = error;
-                    this.loading = false;
+                    this.isLoading = false;
                 });
     }
 }

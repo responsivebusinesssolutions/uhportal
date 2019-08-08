@@ -9,13 +9,13 @@
          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="my-form">
                <mat-form-field class="full-width">
                <mat-label for="username">Username</mat-label>
-               <input matInput type="text" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-               <mat-error  *ngIf="submitted && f.username.errors">Username is required</mat-error>
+               <input matInput type="text" formControlName="username" [ngClass]="{ 'is-invalid': loginForm.submitted && f.username.errors }" />
+               <mat-error  *ngIf="loginForm.submitted && f.username.errors">Username is required</mat-error>
                </mat-form-field>
                <mat-form-field class="full-width">
                <mat-label for="password">Password</mat-label>
-               <input matInput type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-               <mat-error *ngIf="submitted && f.password.errors">Password is required</mat-error>
+               <input matInput type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': loginForm.submitted && f.password.errors }" />
+               <mat-error *ngIf="loginForm.submitted && f.password.errors">Password is required</mat-error>
                </mat-form-field>
                <button class="login" mat-raised-button [disabled]="loading" color="primary">
                      <span *ngIf="loading"></span>

@@ -1,9 +1,7 @@
-import { AuthenticationService } from './_services/authentication.service';
-
+import { AuthenticationService } from './core/services/authentication.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
-
+import { User } from './core/interfaces/user';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  currentUser: any;
+  currentUser: User;
   title = 'uhportal';
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      this.authenticationService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
   }
   
   logout() {

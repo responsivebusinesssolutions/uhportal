@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AuthenticationService } from './../_services/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({ 
   selector: 'app-login',
@@ -13,11 +13,10 @@ import { AuthenticationService } from './../_services/authentication.service';
 })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
-    loading = false;
-    submitted = false;
+    isLoading = false;
     returnUrl: string;
     error: string;
-    success: string
+    successMessage: string
 
     constructor(
         private formBuilder: FormBuilder,
@@ -42,27 +41,25 @@ export class LoginComponent implements OnInit {
 
         // show success message on registration
         if (this.route.snapshot.queryParams['registered']) {
-            this.success = 'Registration successful';
+            this.successMessage = 'Registration successful';
         }
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.loginForm.controls; }
+    get formData() { return this.loginForm.controls; }
 
     onSubmit() {
-        this.submitted = true;
-
         // reset alerts on submit
         this.error = null;
-        this.success = null;
+        this.successMessage = null;
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
         }
 
-        this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.isLoading = true;
+        this.authenticationService.login(this.formData.username.value, this.formData.password.value)
             .pipe(first())
             .subscribe(
                 data => {
@@ -70,7 +67,7 @@ export class LoginComponent implements OnInit {
                 },
                 error => {
                     this.error = error;
-                    this.loading = false;
+                    this.isLoading = false;
                 });
     }
 }
