@@ -8,22 +8,22 @@
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <mat-form-field class="full-width">
                     <mat-label for="firstName">First Name</mat-label>
-                    <input matInput type="text" formControlName="firstName" [ngClass]="{ 'is-invalid': loginForm.submitted && formData.firstName.errors }" />
+                    <input matInput type="text" formControlName="firstName" [ngClass]="{ 'is-invalid': registerForm.submitted && formData.firstName.errors }" />
                     <mat-error>First Name is required</mat-error>
                     </mat-form-field>
                     <mat-form-field class="full-width">
                     <mat-label for="lastName">Last Name</mat-label>
-                    <input matInput type="text" formControlName="lastName" [ngClass]="{ 'is-invalid': loginForm.submitted && formData.lastName.errors }" />
+                    <input matInput type="text" formControlName="lastName" [ngClass]="{ 'is-invalid': registerForm.submitted && formData.lastName.errors }" />
                     <mat-error>Last Name is required</mat-error>
                     </mat-form-field>
                     <mat-form-field class="full-width">
                     <mat-label for="username">Username</mat-label>
-                    <input matInput type="text" formControlName="username" [ngClass]="{ 'is-invalid': loginForm.submitted && formData.username.errors }" />
+                    <input matInput type="text" formControlName="username" [ngClass]="{ 'is-invalid': registerForm.submitted && formData.username.errors }" />
                     <mat-error>Username is required</mat-error>
                     </mat-form-field>
                     <mat-form-field class="full-width">
                     <mat-label for="password">Password</mat-label>
-                    <input matInput type="password" formControlName="password" [ngClass]="{ 'is-invalid': loginForm.submitted && formData.password.errors }" />
+                    <input matInput type="password" formControlName="password" [ngClass]="{ 'is-invalid': registerForm.submitted && formData.password.errors }" />
                     <mat-error>Password is required</mat-error>
                     </mat-form-field>
                     <button mat-raised-button [disabled]="loading" color="primary">
