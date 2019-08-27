@@ -11,6 +11,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DataTableContainerComponent } from './containers/data-table-container/data-table-container.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RegisterComponent } from './components/register/register.component';
     DataTableComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DataTableContainerComponent
   ],
   imports: [
     AppMaterialModule,
