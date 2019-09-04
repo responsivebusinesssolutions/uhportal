@@ -24,7 +24,7 @@ const EXAMPLE_DATA: DataTableItem[] = [
   {id: 8, name: 'John Rider', email: 'thehitcher@yahoo.com'},
   {id: 9, name: 'Jody Reynolds', email: 'fireoflove@gmail.com'},
   {id: 10, name: 'Ari Up', email: 'pattifanclub@gmx.de'},
-  {id: 11, name: 'Kalus Wunderlich', email: 'wersiking@gmx.de'},
+  {id: 11, name: 'Klaus Wunderlich', email: 'wersiking@gmx.de'},
   {id: 12, name: 'Brian Wilson', email: 'smile@gmail.com'},
   {id: 13, name: 'R. Stevie Moore', email: 'cooldaddio@gmail.com'},
   {id: 14, name: 'Saul Adamczewski', email: 'dentistonholiday@gmail.com'},
