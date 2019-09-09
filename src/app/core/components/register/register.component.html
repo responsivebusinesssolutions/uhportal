@@ -26,7 +26,7 @@
                     <input matInput type="password" formControlName="password" [ngClass]="{ 'is-invalid': registerForm.submitted && formData.password.errors }" />
                     <mat-error>Password is required</mat-error>
                     </mat-form-field>
-                    <button mat-raised-button [disabled]="loading" color="primary">
+                    <button class="register" mat-raised-button [disabled]="loading" color="primary">
                         <span *ngIf="loading"></span>
                         Register
                     </button>

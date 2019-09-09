@@ -1,0 +1,49 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Klaus Wunderlich",
+      "email": "klaus@gmx.de"
+    },
+    {
+      "id": 2,
+      "name": "Dylan Moran",
+      "email": "dylan@yahoo.co.uk"
+    },
+    {
+      "id": 3,
+      "name": "Doug Stanhope",
+      "email": "doug@gmx.de"
+    },
+    {
+      "id": 4,
+      "name": "John Cleese",
+      "email": "johnfake@gmx.de"
+    },
+    {
+      "id": 5,
+      "name": "Michael Palin",
+      "email": "dudu@bbc.co.uk"
+    },
+    {
+      "id": 6,
+      "name": "Klaus Kinski",
+      "email": "psycho@gmx.de"
+    },
+    {
+      "id": 7,
+      "name": "Donny Benet",
+      "email": "donny@love.com"
+    },
+    {
+      "id": 8,
+      "name": "Frederic Goose",
+      "email": "fredie@dodo.com"
+    },
+    {
+      "id": 9,
+      "name": "Queen Elizabeth the 1000th",
+      "email": "godsaveme@bbc.co.uk"
+    }
+  ]
+}
