@@ -18,7 +18,7 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         AppMaterialModule,
-        FormsModule, 
+        FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule

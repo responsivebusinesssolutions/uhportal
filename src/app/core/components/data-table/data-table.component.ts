@@ -1,6 +1,7 @@
+import { DataTableService } from './../../services/data-table.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTable } from '@angular/material';
-import { DataTableDataSource, DataTableItem } from './data-table-datasource';
+import { DataTableItem } from './../../interfaces/data-table-item';
 import { MatTableDataSource } from '@angular/material';
 
 @Component({
@@ -12,13 +13,17 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatTable, {static: false}) table: MatTable<DataTableItem>;
-  dataSource: DataTableDataSource;
+  dataSource: MatTableDataSource<DataTableItem>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', 'email'];
 
+  constructor(private dataTableService: DataTableService) {
+  }
+
   ngOnInit() {
-    this.dataSource = new DataTableDataSource();
+    this.dataSource = new MatTableDataSource();
+    this.loadTableData();
   }
 
   ngAfterViewInit() {
@@ -29,5 +34,13 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
   public applyFilter = (searchKey: string) => {
     this.dataSource.filter = searchKey.trim().toLocaleLowerCase();
+  }
+
+  private loadTableData() {
+    this.dataTableService.getTableData().subscribe(
+      data => {
+        this.dataSource.data = data;
+      }
+    );
   }
 }

@@ -109,7 +109,7 @@ fdescribe('RegisterComponent', () => {
     });
 
     it('should call userService with form values', () => {
-      
+
       const testUser = {
         firstName: 'firstName',
         lastName: 'lastName',

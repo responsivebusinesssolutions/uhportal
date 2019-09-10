@@ -2,7 +2,7 @@ import { async, fakeAsync, ComponentFixture, TestBed } from '@angular/core/testi
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
 
 import { AppMaterialModule } from '../../../app-material/app-material.module';
@@ -18,14 +18,14 @@ describe('DataTableComponent', () => {
       declarations: [ DataTableComponent, DataTableContainerComponent ],
       schemas: [ NO_ERRORS_SCHEMA ],
       imports: [
-        AppMaterialModule, 
+        AppMaterialModule,
         BrowserAnimationsModule,
         HttpClientTestingModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
         RouterTestingModule
-      ]      
+      ]
     }).compileComponents();
   }));
 

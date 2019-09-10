@@ -6,7 +6,7 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../services/authentication.service';
 
-@Component({ 
+@Component({
   selector: 'app-login',
   templateUrl: 'login.component.html',
   styleUrls: ['./login.component.scss']
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     isLoading = false;
     returnUrl: string;
     error: string;
-    successMessage: string
+    successMessage: string;
 
     constructor(
         private formBuilder: FormBuilder,
