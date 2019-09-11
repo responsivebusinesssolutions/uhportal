@@ -1,5 +1,5 @@
 import { AppRoutingModule } from './app-routing.module';
-import { AppMaterialModule } from './app-material/app-material.module';
+import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -7,9 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './core/components/login/login.component';
-import { HomeComponent } from './core/components/home/home.component';
-import { RegisterComponent } from './core/components/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { HomeComponent } from './layout/home/home.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 describe('AppComponent', () => {
 

@@ -1,40 +1,22 @@
-import { LayoutModule } from './../layout/layout.module';
-import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CoreRoutingModule } from './core-routing.module';
-import { AppMaterialModule } from './../app-material/app-material.module';
-import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import { DataTableComponent } from './components/data-table/data-table.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-
+import { fakeBackendProvider } from './helpers/fake-backend';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { throwIfAlreadyLoaded } from './guards/module-import.guard';
 
 @NgModule({
-  declarations: [
-    DataTableComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent
-  ],
-  imports: [
-    AppMaterialModule,
-    CommonModule,
-    CoreRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    LayoutModule,
-    ReactiveFormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
-  ],
-  exports: [
-    AppMaterialModule
+  imports: [CommonModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    throwIfAlreadyLoaded(parentModule, 'CoreModule');
+  }
+}

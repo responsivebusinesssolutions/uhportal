@@ -1,18 +1,12 @@
-
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from './layout/layout.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import { AppMaterialModule } from './app-material/app-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-
-import { fakeBackendProvider } from './core/helpers/fake-backend';
-import { JwtInterceptor } from './core/helpers/jwt.interceptor';
-import { ErrorInterceptor } from './core/helpers/error.interceptor';
-
+import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 
 
@@ -21,19 +15,17 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    AppMaterialModule,
     AppRoutingModule,
+    AuthModule,
     BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
-    FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    LayoutModule,
+    SharedModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider
+  exports: [
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

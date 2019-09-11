@@ -1,5 +1,5 @@
-import { AppMaterialModule } from './../../../app-material/app-material.module';
-import { AuthenticationService } from './../../services/authentication.service';
+import { AppMaterialModule } from '../../shared/app-material/app-material.module';
+import { AuthenticationService } from '../../core/services/authentication.service';
 import { async, fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { LoginComponent } from './login.component';

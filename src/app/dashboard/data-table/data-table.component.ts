@@ -1,7 +1,7 @@
-import { DataTableService } from './../../services/data-table.service';
+import { DataTableService } from '../../core/services/data-table.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTable } from '@angular/material';
-import { DataTableItem } from './../../interfaces/data-table-item';
+import { DataTableItem } from '../../core/interfaces/data-table-item';
 import { MatTableDataSource } from '@angular/material';
 
 @Component({

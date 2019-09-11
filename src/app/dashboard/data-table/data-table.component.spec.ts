@@ -5,8 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
 
-import { AppMaterialModule } from '../../../app-material/app-material.module';
-import { DataTableContainerComponent } from './../../containers/data-table-container/data-table-container.component';
+import { AppMaterialModule } from '../../shared/app-material/app-material.module';
 import { DataTableComponent } from './data-table.component';
 
 describe('DataTableComponent', () => {
@@ -15,7 +14,7 @@ describe('DataTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DataTableComponent, DataTableContainerComponent ],
+      declarations: [ DataTableComponent ],
       schemas: [ NO_ERRORS_SCHEMA ],
       imports: [
         AppMaterialModule,
