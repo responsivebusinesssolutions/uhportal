@@ -1,49 +1,44 @@
-<div *ngIf="error">{{ error }}</div>
-<div *ngIf="success">{{ success }}</div>
-<div class="login-wrapper">
+<!-- <div *ngIf="error">{{ error }}</div>
+<div *ngIf="success">{{ success }}</div> -->
+<div class="login">
   <mat-toolbar>
     <h2>Login</h2>
   </mat-toolbar>
-  <mat-card class="my-card">
+  <mat-card>
     <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="my-form">
-        <mat-form-field class="full-width">
-          <mat-label for="username">Username</mat-label>
-          <input
-            matInput
-            type="text"
-            formControlName="username"
-            [ngClass]="{
-              'is-invalid': loginForm.submitted && formData.username.errors
-            }"
-          />
-          <mat-error *ngIf="loginForm.submitted && formData.username.errors"
-            >Username is required</mat-error
-          >
-        </mat-form-field>
-        <mat-form-field class="full-width">
-          <mat-label for="password">Password</mat-label>
-          <input
-            matInput
-            type="password"
-            formControlName="password"
-            class="form-control"
-            [ngClass]="{
-              'is-invalid': loginForm.submitted && formData.password.errors
-            }"
-          />
-          <mat-error *ngIf="loginForm.submitted && formData.password.errors"
-            >Password is required</mat-error
-          >
-        </mat-form-field>
+      <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <div class="login__row">
+          <mat-form-field>
+            <mat-label for="username">Username</mat-label>
+            <input formControlName="username" matInput type="text" />
+            <mat-error *ngIf="loginForm.get('username').invalid"
+              >Username is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="login__row">
+          <mat-form-field>
+            <mat-label for="password">Password</mat-label>
+            <input formControlName="password" matInput type="password" />
+            <mat-error *ngIf="loginForm.get('password').invalid"
+              >Password is required</mat-error
+            >
+          </mat-form-field>
+        </div>
         <button
-          class="login"
-          mat-raised-button
-          [disabled]="loading"
+          [disabled]="isLoading"
+          class="login__loading-button"
           color="primary"
+          mat-raised-button
         >
-          <span *ngIf="loading"></span>
-          Login
+          <ng-container *ngIf="isLoading">
+            <div class="login__loading-spinner">
+              <mat-spinner [diameter]="20" color="primary"></mat-spinner>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!isLoading">
+            <span>Login</span>
+          </ng-container>
         </button>
       </form>
     </mat-card-content>

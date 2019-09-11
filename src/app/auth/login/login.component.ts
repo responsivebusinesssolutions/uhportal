@@ -1,6 +1,6 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../core/services/authentication.service';
@@ -24,24 +24,15 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.isLoading = false;
-
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-
-    if (this.route.snapshot.queryParams.registered) {
-      this.successMessage = 'Registration successful';
-    }
+    this.initLoginForm();
   }
 
-  onSubmit(): void {
-    // reset alerts on submit
+  onSubmit() {
+    // Reset alerts on submit
     this.error = null;
     this.successMessage = null;
 
-    // stop here if form is invalid
+    // Stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
@@ -62,5 +53,19 @@ export class LoginComponent implements OnInit {
           this.isLoading = false;
         }
       );
+  }
+
+  private initLoginForm(): void {
+    this.isLoading = false;
+
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
+    // Show success message on registration
+    if (this.route.snapshot.queryParams.registered) {
+      this.successMessage = 'Registration successful';
+    }
   }
 }
