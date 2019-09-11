@@ -1,14 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 
 body {
-    background-color: #9fa8da;
+  background-color: #9fa8da;
 }
 
 mat-card {
-    border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 
 mat-error {
-    color: red !important;
+  color: red !important;
 }
