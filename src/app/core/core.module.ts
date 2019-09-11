@@ -1,3 +1,4 @@
+import { LayoutModule } from './../layout/layout.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -26,10 +27,14 @@ import { RegisterComponent } from './components/register/register.component';
     CoreRoutingModule,
     FormsModule,
     HttpClientModule,
+    LayoutModule,
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule
+  ],
+  exports: [
+    AppMaterialModule
   ]
 })
 export class CoreModule { }

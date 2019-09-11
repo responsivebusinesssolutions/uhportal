@@ -16,16 +16,10 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService) {
-      this.authenticationService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
+      // this.authenticationService.currentUser.subscribe(currentUser => this.currentUser = currentUser);
      }
 
   ngOnInit() {
   }
-
-  logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
-}
-
 }
 

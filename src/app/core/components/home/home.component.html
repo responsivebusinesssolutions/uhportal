@@ -1,20 +1,4 @@
-<div id="menu-container">
-    <mat-toolbar color="primary">
-        <mat-toolbar-row>
-            <div id="nav-wrapper">
-                <a routerLink="/">Home</a>
-                <a routerLink="/login">Login</a>
-                <a routerLink="/register">Register</a>
-                <a (click)="logout()">Logout</a>
-            </div>
-        </mat-toolbar-row>
-    </mat-toolbar>
-</div>
+<app-header></app-header>
 
 <router-outlet></router-outlet>
-
-
-<div id="home-container">
-    <app-data-table></app-data-table>
-</div>
 
