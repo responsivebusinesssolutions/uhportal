@@ -1,5 +1,10 @@
-<!-- <div *ngIf="error">{{ error }}</div>
-<div *ngIf="success">{{ success }}</div> -->
+<ng-container *ngIf="error">
+  <div>{{ error }}</div>
+</ng-container>
+
+<!-- TODO: snackBarService -->
+<!-- <div *ngIf="success">{{ success }}</div> -->
+
 <div class="login">
   <mat-toolbar>
     <h2>Login</h2>
@@ -11,7 +16,7 @@
           <mat-form-field>
             <mat-label for="username">Username</mat-label>
             <input formControlName="username" matInput type="text" />
-            <mat-error *ngIf="loginForm.get('username').invalid"
+            <mat-error *ngIf="loginForm.hasError('required', 'username')"
               >Username is required</mat-error
             >
           </mat-form-field>
@@ -20,7 +25,7 @@
           <mat-form-field>
             <mat-label for="password">Password</mat-label>
             <input formControlName="password" matInput type="password" />
-            <mat-error *ngIf="loginForm.get('password').invalid"
+            <mat-error *ngIf="loginForm.hasError('required', 'password')"
               >Password is required</mat-error
             >
           </mat-form-field>
