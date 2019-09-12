@@ -1,4 +1,4 @@
-import { MaterialModule } from './../../shared/app-material/app-material.module';
+import { MaterialModule } from './../../shared/material/material.module';
 import { AuthenticationService } from '../authentication.service';
 import { UserService } from '../../core/helpers/user.service';
 import { async, fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -38,27 +38,20 @@ fdescribe('RegisterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppMaterialModule,
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
-        ReactiveFormsModule,
-       ],
-      declarations: [ RegisterComponent ],
+      imports: [MaterialModule, BrowserAnimationsModule, HttpClientTestingModule, ReactiveFormsModule],
+      declarations: [RegisterComponent],
       providers: [
-        {provide: AuthenticationService, useClass: AuthenticationServiceStub},
-        {provide: UserService, useClass: UserServiceStub},
-        {provide: Router, useClass: RouterStub},
+        { provide: AuthenticationService, useClass: AuthenticationServiceStub },
+        { provide: UserService, useClass: UserServiceStub },
+        { provide: Router, useClass: RouterStub },
         FormBuilder,
         {
           provide: ActivatedRoute,
-          useValue: { snapshot: { queryParams: { returnUrl: 'home' } } },
-        },
+          useValue: { snapshot: { queryParams: { returnUrl: 'home' } } }
+        }
       ],
-      schemas: [ NO_ERRORS_SCHEMA ]
-
-    })
-    .compileComponents();
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -94,7 +87,6 @@ fdescribe('RegisterComponent', () => {
         password: ''
       });
     });
-
   });
 
   describe('onSubmit', () => {
@@ -109,7 +101,6 @@ fdescribe('RegisterComponent', () => {
     });
 
     it('should call userService with form values', () => {
-
       const testUser = {
         firstName: 'firstName',
         lastName: 'lastName',
@@ -147,6 +138,5 @@ fdescribe('RegisterComponent', () => {
 
       expect(userService.register).not.toHaveBeenCalled();
     });
-
   });
 });
