@@ -1,5 +1,5 @@
 import { AppRoutingModule } from './app-routing.module';
-import { AppMaterialModule } from './shared/app-material/app-material.module';
+import { MaterialModule } from './shared/material/material.module';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -12,12 +12,11 @@ import { HomeComponent } from './layout/home/home.component';
 import { RegisterComponent } from './auth/register/register.component';
 
 describe('AppComponent', () => {
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        AppMaterialModule,
+        MaterialModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
@@ -29,7 +28,7 @@ describe('AppComponent', () => {
         HomeComponent,
         RegisterComponent
       ],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
@@ -39,11 +38,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'uhportal'`, () => {
+  /*   it(`should have as title 'uhportal'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('uhportal');
-  });
+  }); */
 
   // it('should render title in a h1 tag', () => {
   //   const fixture = TestBed.createComponent(AppComponent);

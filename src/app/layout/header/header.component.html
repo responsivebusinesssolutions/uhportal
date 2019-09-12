@@ -1,12 +1,10 @@
-<div id="menu-container">
-    <mat-toolbar color="primary">
-        <mat-toolbar-row>
-            <div id="nav-wrapper">
-                <a routerLink="/dashboard/data-table">Home</a>
-                <a routerLink="/auth/login">Login</a>
-                <a routerLink="/auth/register">Register</a>
-                <a (click)="logout()">Logout</a>
-            </div>
-        </mat-toolbar-row>
-    </mat-toolbar>
-</div>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div class="header__nav-wrapper">
+      <a routerLink="/">Home</a>
+      <a routerLink="/auth/login">Login</a>
+      <a routerLink="/auth/register">Register</a>
+      <a (click)="onLogout()">Logout</a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

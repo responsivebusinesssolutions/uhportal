@@ -1,24 +1,23 @@
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppMaterialModule } from './app-material/app-material.module';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material/material.module';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [],
   imports: [
-    AppMaterialModule,
     CommonModule,
     FormsModule,
+    MaterialModule,
     ReactiveFormsModule,
     RouterModule
   ],
   exports: [
-    AppMaterialModule,
     CommonModule,
     FormsModule,
+    MaterialModule,
     ReactiveFormsModule,
     RouterModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {}
