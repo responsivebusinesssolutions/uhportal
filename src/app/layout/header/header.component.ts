@@ -13,19 +13,21 @@ import { User } from './../../core/interfaces/user';
 export class HeaderComponent implements OnInit {
   currentUser: User;
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router
-  ) {}
+  constructor(private authenticationService: AuthenticationService, private router: Router) {}
 
   ngOnInit() {
     this.subscribeToUserEvent();
   }
 
-  onLogout() {
-    this.authenticationService.logout();
+  isLoggedIn(): boolean {
+    return !!this.authenticationService.currentUserValue;
+  }
 
-    this.router.navigate(['/auth/login']);
+  onLogout() {
+    if (this.isLoggedIn()) {
+      this.authenticationService.logout();
+      this.router.navigate(['/auth/login']);
+    }
   }
 
   private subscribeToUserEvent(): void {

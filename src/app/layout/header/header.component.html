@@ -2,9 +2,15 @@
   <mat-toolbar-row>
     <div class="header__nav-wrapper">
       <a routerLink="/">Home</a>
-      <a routerLink="/auth/login">Login</a>
-      <a routerLink="/auth/register">Register</a>
-      <a (click)="onLogout()">Logout</a>
+
+      <ng-container *ngIf="!isLoggedIn()">
+        <a routerLink="/auth/login">Login</a>
+        <a routerLink="/auth/register">Register</a>
+      </ng-container>
+
+      <ng-container *ngIf="isLoggedIn()">
+        <a (click)="onLogout()">Logout</a>
+      </ng-container>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

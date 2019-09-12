@@ -39,10 +39,7 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true;
     this.authenticationService
-      .login(
-        this.loginForm.get('username').value,
-        this.loginForm.get('password').value
-      )
+      .login(this.loginForm.get('username').value, this.loginForm.get('password').value)
       .pipe(first())
       .subscribe(
         () => {
