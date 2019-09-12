@@ -3,6 +3,9 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatTableModule,
   MatToolbarModule,
   MatProgressSpinnerModule
 } from '@angular/material';
@@ -13,7 +16,10 @@ import { NgModule } from '@angular/core';
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatInputModule, 
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
     MatProgressSpinnerModule,
     MatToolbarModule
   ],
@@ -23,6 +29,9 @@ import { NgModule } from '@angular/core';
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
     MatToolbarModule
   ]
 })
