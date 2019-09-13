@@ -6,6 +6,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 
 import { AuthGuard } from './helpers';
 import { LoggedInGuard } from '../auth/guards/logged-in.guard';
+import { NotificationService } from '../shared/notification/notification.service';
 
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { throwIfAlreadyLoaded } from './guards/module-import.guard';
@@ -14,6 +15,7 @@ import { throwIfAlreadyLoaded } from './guards/module-import.guard';
   providers: [
     AuthGuard,
     LoggedInGuard,
+    NotificationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider

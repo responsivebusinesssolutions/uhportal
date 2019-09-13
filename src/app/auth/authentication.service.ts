@@ -4,13 +4,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../core/interfaces/user';
+import { NotificationService } from '../shared/notification/notification.service';
+import { NotificationType } from '../shared/notification/enums/notification-type.enum';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private notificationService: NotificationService, private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -41,6 +43,7 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem('currentUser');
 
+    this.notificationService.showNotification('Logged out successfully!', NotificationType.SUCCESS);
     this.currentUserSubject.next(null);
   }
 }

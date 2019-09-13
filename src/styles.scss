@@ -12,3 +12,23 @@ mat-card {
 mat-error {
   color: red !important;
 }
+
+.mat-simple-snackbar-action {
+  color: rgba(255, 255, 255, 0.7) !important;
+  margin-right: -0.6875rem !important;
+}
+
+.notification-error {
+  background-color: rgba(226, 37, 37, 0.875) !important;
+  color: white;
+}
+
+.notification-warning {
+  background-color: rgba(248, 252, 15, 0.875) !important;
+  color: white;
+}
+
+.notification-success {
+  background-color: rgba(37, 182, 32, 0.875) !important;
+  color: white;
+}

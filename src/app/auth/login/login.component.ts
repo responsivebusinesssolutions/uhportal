@@ -1,9 +1,11 @@
-import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../authentication.service';
+import { NotificationService } from '../../shared/notification/notification.service';
+
+import { NotificationType } from '../../shared/notification/enums/notification-type.enum';
 
 @Component({
   selector: 'app-login',
@@ -11,43 +13,37 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  error: string;
   isLoading: boolean;
   loginForm: FormGroup;
-  successMessage: string;
 
   constructor(
     private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
+    private notificationService: NotificationService,
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initLoginForm();
   }
 
-  onSubmit() {
-    // Reset alerts on submit
-    this.error = null;
-    this.successMessage = null;
-
-    // Stop here if form is invalid
+  onSubmit(): void {
     if (this.loginForm.invalid) {
       return;
     }
 
+    // TODO: proper error handling
     this.isLoading = true;
     this.authenticationService
       .login(this.loginForm.get('username').value, this.loginForm.get('password').value)
-      .pipe(first())
       .subscribe(
         () => {
-          this.router.navigate(['/']);
+          this.notificationService.showNotification('Logged in successfully!', NotificationType.SUCCESS);
+          this.router.navigate(['/dashboard']);
         },
-        error => {
-          this.error = error;
+        () => {
           this.isLoading = false;
+          this.notificationService.showNotification('Incorrect username / password!', NotificationType.ERROR);
         }
       );
   }
@@ -59,10 +55,5 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-
-    // Show success message on registration
-    if (this.route.snapshot.queryParams.registered) {
-      this.successMessage = 'Registration successful';
-    }
   }
 }
