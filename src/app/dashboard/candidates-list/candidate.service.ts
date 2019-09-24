@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 
 import { Candidate } from 'src/app/dashboard/interfaces/candidate.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CandidateService {
   constructor(private httpClient: HttpClient) {}
 

@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { NotificationType } from './enums/notification-type.enum';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class NotificationService {
   constructor(private snackBar: MatSnackBar) {}
 
