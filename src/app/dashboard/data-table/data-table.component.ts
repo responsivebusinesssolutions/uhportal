@@ -10,9 +10,9 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./data-table.component.scss']
 })
 export class DataTableComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatTable, {static: false}) table: MatTable<DataTableItem>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<DataTableItem>;
   dataSource: MatTableDataSource<DataTableItem>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
