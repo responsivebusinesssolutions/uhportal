@@ -1,5 +1,5 @@
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-home',

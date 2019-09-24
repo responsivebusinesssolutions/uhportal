@@ -1,13 +1,13 @@
-import { DataTableComponent } from './data-table/data-table.component';
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from '../core/helpers';
+import { AuthGuard } from '../auth/guards/auth.guard';
+
+import { CandidatesListComponent } from './candidates-list/candidates-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'data-table', pathMatch: 'full' },
-  { path: 'data-table', component: DataTableComponent, canActivate: [AuthGuard] }
+  { path: '', redirectTo: 'candidates-list', pathMatch: 'full' },
+  { path: 'candidates-list', component: CandidatesListComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

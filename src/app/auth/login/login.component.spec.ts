@@ -1,17 +1,16 @@
-import { AppMaterialModule } from './../../../app-material/app-material.module';
-import { AuthenticationService } from './../../services/authentication.service';
-import { async, fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { LoginComponent } from './login.component';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AuthService } from '../auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { of, throwError } from 'rxjs';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoginComponent } from './login.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 
-class AuthenticationServiceStub {
+class AuthServiceStub {
   login = jasmine.createSpy('login');
   currentUserValue = jasmine.createSpy('currentUserValue');
 }
@@ -24,31 +23,24 @@ fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let el: HTMLElement;
-  let authenticationService: AuthenticationServiceStub;
+  let authenticationService: AuthServiceStub;
   let router: Router;
   let activatedRoute: ActivatedRoute;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppMaterialModule,
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
-        ReactiveFormsModule,
-       ],
-      declarations: [ LoginComponent ],
+      imports: [MaterialModule, BrowserAnimationsModule, HttpClientTestingModule, ReactiveFormsModule],
+      declarations: [LoginComponent],
       providers: [
-        {provide: AuthenticationService, useClass: AuthenticationServiceStub},
-        {provide: Router, useClass: RouterStub},
+        { provide: AuthService, useClass: AuthServiceStub },
+        { provide: Router, useClass: RouterStub },
         {
           provide: ActivatedRoute,
-          useValue: { snapshot: { queryParams: { returnUrl: 'home' } } },
-        },
+          useValue: { snapshot: { queryParams: { returnUrl: 'home' } } }
+        }
       ],
-      schemas: [ NO_ERRORS_SCHEMA ]
-
-    })
-    .compileComponents();
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -56,7 +48,7 @@ fdescribe('LoginComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    authenticationService = TestBed.get(AuthenticationService);
+    authenticationService = TestBed.get(AuthService);
     router = TestBed.get(Router);
     activatedRoute = TestBed.get(ActivatedRoute);
   });

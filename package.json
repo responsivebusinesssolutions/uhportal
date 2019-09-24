@@ -2,14 +2,17 @@
   "name": "uhportal",
   "version": "0.0.0",
   "scripts": {
+    "build": "ng build --prod",
+    "coverage": "ng test --codeCoverage --watch",
+    "e2e": "ng e2e",
+    "e2e:ci": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
+    "format:fix": "pretty-quick --staged",
+    "json-server": "json-server --watch db.json",
+    "lint": "ng lint",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "json-server": "json-server --watch db.json",
-    "start:proxy": "ng serve --proxy-config proxy.conf.json"
+    "start:proxy": "ng serve --proxy-config proxy.conf.json",
+    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI"
   },
   "private": true,
   "dependencies": {
@@ -37,10 +40,11 @@
     "@angular/cli": "~8.3.5",
     "@angular/compiler-cli": "~9.0.0-next.7",
     "@angular/language-service": "~9.0.0-next.7",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "husky": "^3.0.5",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -48,9 +52,12 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "npm-run-all": "^4.1.5",
+    "pretty-quick": "^1.11.1",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.5.3"
   }
 }

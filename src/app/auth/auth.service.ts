@@ -1,0 +1,63 @@
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+
+import { NotificationService } from '../shared/notification/notification.service';
+
+import { LoginInput } from './models/login-input.model';
+import { NotificationType } from '../shared/notification/enums/notification-type.enum';
+import { User } from './interfaces/user.interface';
+import { environment } from '../../environments/environment';
+
+@Injectable({ providedIn: 'root' })
+// TODO: check providedIn vs Core module
+// TODO: check observable response generic types
+export class AuthService {
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+
+  constructor(private httpClient: HttpClient, private notificationService: NotificationService) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
+
+  getAllUsers(): Observable<Array<User>> {
+    return this.httpClient.get<Array<User>>(`${environment.apiUrl}/users`);
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.currentUserValue;
+  }
+
+  login(loginInput: LoginInput): Observable<HttpResponse<any>> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/users/authenticate`, loginInput).pipe(
+      map(user => {
+        // Login successful if there's a JWT token in the response
+        if (user && user.token) {
+          // store user details and JWT token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+
+          this.currentUserSubject.next(user);
+        }
+
+        return user;
+      })
+    );
+  }
+
+  logout(): void {
+    localStorage.removeItem('currentUser');
+
+    this.notificationService.showNotification('Logged out successfully!', NotificationType.SUCCESS);
+    this.currentUserSubject.next(null);
+  }
+
+  register(user: User): Observable<HttpResponse<any>> {
+    return this.httpClient.post<HttpResponse<any>>(`${environment.apiUrl}/users/register`, user);
+  }
+}
