@@ -11,13 +11,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 class AuthServiceStub {
+  currentUserValue = jasmine.createSpy('currentUserValue');
   login = jasmine.createSpy('login');
-  currentUserValue = jasmine.createSpy('currentUserValue');
-}
-
-class UserServiceStub {
   register = jasmine.createSpy('register');
-  currentUserValue = jasmine.createSpy('currentUserValue');
 }
 
 class RouterStub {
@@ -53,11 +49,9 @@ fdescribe('RegisterComponent', () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-    authService = TestBed.get(AuthService);
-
-    router = TestBed.get(Router);
-    activatedRoute = TestBed.get(ActivatedRoute);
+    authService = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
+    activatedRoute = TestBed.inject(ActivatedRoute);
   });
 
   it('should create', () => {
@@ -104,16 +98,16 @@ fdescribe('RegisterComponent', () => {
 
       component.registerForm.patchValue(testUser);
 
-      userService.register.and.returnValue(of({}));
+      authService.register.and.returnValue(of({}));
 
       component.onSubmit();
 
-      expect(userService.register).toHaveBeenCalledTimes(1);
-      expect(userService.register).toHaveBeenCalledWith(testUser);
+      expect(authService.register).toHaveBeenCalledTimes(1);
+      expect(authService.register).toHaveBeenCalledWith(testUser);
     });
 
     it('should call router navigate when userService responds without error', () => {
-      userService.register.and.returnValue(of({}));
+      authService.register.and.returnValue(of({}));
       const expectedUrl = '/';
 
       component.onSubmit();
@@ -123,14 +117,14 @@ fdescribe('RegisterComponent', () => {
     });
 
     it('should not call userService when form is invalid', () => {
-      userService.register.and.returnValue(of({}));
+      authService.register.and.returnValue(of({}));
       component.registerForm.patchValue({
         username: 'test'
       });
 
       component.onSubmit();
 
-      expect(userService.register).not.toHaveBeenCalled();
+      expect(authService.register).not.toHaveBeenCalled();
     });
   });
 });
