@@ -1,5 +1,8 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthModule } from '../auth/auth.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LayoutModule } from '../layout/layout.module';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
 
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
@@ -12,8 +15,10 @@ import { fakeBackendProvider } from './helpers/fake-backend';
 import { throwIfAlreadyLoaded } from './guards/module-import.guard';
 
 @NgModule({
+  imports: [AuthModule, HttpClientModule, LayoutModule, SharedModule],
   providers: [
     AuthGuard,
+    SharedModule,
     LoggedInGuard,
     NotificationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
