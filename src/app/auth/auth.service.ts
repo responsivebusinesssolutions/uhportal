@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { User } from '../core/interfaces/user';
+
 import { NotificationService } from '../shared/notification/notification.service';
+
+import { LoginInput } from './models/login-input.model';
 import { NotificationType } from '../shared/notification/enums/notification-type.enum';
+import { User } from './interfaces/user.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
-export class AuthenticationService {
+// TODO: check observable response generic types
+export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private notificationService: NotificationService, private http: HttpClient) {
+  constructor(private httpClient: HttpClient, private notificationService: NotificationService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -21,17 +25,22 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
+  getAllUsers(): Observable<Array<User>> {
+    return this.httpClient.get<Array<User>>(`${environment.apiUrl}/users`);
+  }
+
   isLoggedIn(): boolean {
     return !!this.currentUserValue;
   }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password }).pipe(
+  login(loginInput: LoginInput): Observable<HttpResponse<any>> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/users/authenticate`, loginInput).pipe(
       map(user => {
-        // login successful if there's a jwt token in the response
+        // Login successful if there's a JWT token in the response
         if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          // store user details and JWT token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
+
           this.currentUserSubject.next(user);
         }
 
@@ -40,10 +49,14 @@ export class AuthenticationService {
     );
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('currentUser');
 
     this.notificationService.showNotification('Logged out successfully!', NotificationType.SUCCESS);
     this.currentUserSubject.next(null);
+  }
+
+  register(user: User): Observable<HttpResponse<any>> {
+    return this.httpClient.post<HttpResponse<any>>(`${environment.apiUrl}/users/register`, user);
   }
 }

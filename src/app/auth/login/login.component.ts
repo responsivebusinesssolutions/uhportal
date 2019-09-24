@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from '../authentication.service';
+import { AuthService } from '../auth.service';
 import { NotificationService } from '../../shared/notification/notification.service';
 
+import { LoginInput } from '../models/login-input.model';
 import { NotificationType } from '../../shared/notification/enums/notification-type.enum';
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private authenticationService: AuthenticationService,
+    private authService: AuthService,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
     private router: Router
@@ -32,20 +33,24 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    // TODO: proper error handling
     this.isLoading = true;
-    this.authenticationService
-      .login(this.loginForm.get('username').value, this.loginForm.get('password').value)
-      .subscribe(
-        () => {
-          this.notificationService.showNotification('Logged in successfully!', NotificationType.SUCCESS);
-          this.router.navigate(['/dashboard']);
-        },
-        () => {
-          this.isLoading = false;
-          this.notificationService.showNotification('Incorrect username / password!', NotificationType.ERROR);
-        }
-      );
+
+    // TODO: proper error handling
+    const loginInput: LoginInput = new LoginInput(
+      this.loginForm.get('username').value,
+      this.loginForm.get('password').value
+    );
+
+    this.authService.login(loginInput).subscribe(
+      () => {
+        this.notificationService.showNotification('Logged in successfully!', NotificationType.SUCCESS);
+        this.router.navigate(['/dashboard']);
+      },
+      () => {
+        this.isLoading = false;
+        this.notificationService.showNotification('Incorrect username / password!', NotificationType.ERROR);
+      }
+    );
   }
 
   private initLoginForm(): void {

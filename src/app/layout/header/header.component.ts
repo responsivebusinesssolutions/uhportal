@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from '../../auth/authentication.service';
+import { AuthService } from '../../auth/auth.service';
 
-import { User } from './../../core/interfaces/user';
+import { User } from 'src/app/auth/interfaces/user.interface';
 
 @Component({
   selector: 'app-header',
@@ -13,25 +13,25 @@ import { User } from './../../core/interfaces/user';
 export class HeaderComponent implements OnInit {
   currentUser: User;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.subscribeToUserEvent();
   }
 
   isLoggedIn(): boolean {
-    return !!this.authenticationService.currentUserValue;
+    return !!this.authService.currentUserValue;
   }
 
-  onLogout() {
+  onLogout(): void {
     if (this.isLoggedIn()) {
-      this.authenticationService.logout();
+      this.authService.logout();
       this.router.navigate(['/auth/login']);
     }
   }
 
   private subscribeToUserEvent(): void {
-    this.authenticationService.currentUser.subscribe((currentUser: User) => {
+    this.authService.currentUser.subscribe((currentUser: User) => {
       this.currentUser = currentUser;
     });
   }

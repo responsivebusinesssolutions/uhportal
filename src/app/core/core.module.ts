@@ -1,23 +1,28 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthModule } from '../auth/auth.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LayoutModule } from '../layout/layout.module';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
 
-import { ErrorInterceptor } from './helpers/error.interceptor';
-import { JwtInterceptor } from './helpers/jwt.interceptor';
-
-import { AuthGuard } from './helpers';
+import { AuthGuard } from '../auth/guards/auth.guard';
 import { LoggedInGuard } from '../auth/guards/logged-in.guard';
-import { NotificationService } from '../shared/notification/notification.service';
 
-import { fakeBackendProvider } from './helpers/fake-backend';
-import { throwIfAlreadyLoaded } from './guards/module-import.guard';
+import { ErrorInterceptor } from '../shared/interceptors/error.interceptor';
+import { RequestInterceptor } from '../shared/interceptors/request.interceptor';
+import { ResponseInterceptor } from '../shared/interceptors/response.interceptor';
+
+import { fakeBackendProvider } from '../shared/helpers/fake-backend';
+import { throwIfAlreadyLoaded } from '../shared/utils/module-import-guard';
 
 @NgModule({
+  imports: [AuthModule.forRoot(), HttpClientModule, LayoutModule.forRoot(), SharedModule.forRoot()],
   providers: [
     AuthGuard,
+    SharedModule,
     LoggedInGuard,
-    NotificationService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
     fakeBackendProvider
   ]
 })

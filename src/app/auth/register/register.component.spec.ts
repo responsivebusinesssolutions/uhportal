@@ -1,25 +1,19 @@
-import { MaterialModule } from './../../shared/material/material.module';
-import { AuthenticationService } from '../authentication.service';
-import { UserService } from '../../core/helpers/user.service';
-import { async, fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { RegisterComponent } from './register.component';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AuthService } from '../auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { of, throwError } from 'rxjs';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MaterialModule } from './../../shared/material/material.module';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { RegisterComponent } from './register.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
-class AuthenticationServiceStub {
+class AuthServiceStub {
+  currentUserValue = jasmine.createSpy('currentUserValue');
   login = jasmine.createSpy('login');
-  currentUserValue = jasmine.createSpy('currentUserValue');
-}
-
-class UserServiceStub {
   register = jasmine.createSpy('register');
-  currentUserValue = jasmine.createSpy('currentUserValue');
 }
 
 class RouterStub {
@@ -27,22 +21,19 @@ class RouterStub {
 }
 
 fdescribe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
-  let el: HTMLElement;
-  let authenticationService: AuthenticationServiceStub;
-  let userService: UserServiceStub;
-
-  let router: Router;
   let activatedRoute: ActivatedRoute;
+  let authService: AuthServiceStub;
+  let component: RegisterComponent;
+  let el: HTMLElement;
+  let fixture: ComponentFixture<RegisterComponent>;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, BrowserAnimationsModule, HttpClientTestingModule, ReactiveFormsModule],
       declarations: [RegisterComponent],
       providers: [
-        { provide: AuthenticationService, useClass: AuthenticationServiceStub },
-        { provide: UserService, useClass: UserServiceStub },
+        { provide: AuthService, useClass: AuthServiceStub },
         { provide: Router, useClass: RouterStub },
         FormBuilder,
         {
@@ -58,12 +49,9 @@ fdescribe('RegisterComponent', () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-    authenticationService = TestBed.get(AuthenticationService);
-    userService = TestBed.get(UserService);
-
-    router = TestBed.get(Router);
-    activatedRoute = TestBed.get(ActivatedRoute);
+    authService = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
+    activatedRoute = TestBed.inject(ActivatedRoute);
   });
 
   it('should create', () => {
@@ -71,7 +59,7 @@ fdescribe('RegisterComponent', () => {
   });
 
   it('should navigate when currentUser is defined', () => {
-    authenticationService.currentUserValue.and.returnValue({});
+    authService.currentUserValue.and.returnValue({});
 
     expect(router.navigate).toHaveBeenCalledTimes(1);
     expect(router.navigate).toHaveBeenCalledWith(['/']);
@@ -110,16 +98,16 @@ fdescribe('RegisterComponent', () => {
 
       component.registerForm.patchValue(testUser);
 
-      userService.register.and.returnValue(of({}));
+      authService.register.and.returnValue(of({}));
 
       component.onSubmit();
 
-      expect(userService.register).toHaveBeenCalledTimes(1);
-      expect(userService.register).toHaveBeenCalledWith(testUser);
+      expect(authService.register).toHaveBeenCalledTimes(1);
+      expect(authService.register).toHaveBeenCalledWith(testUser);
     });
 
     it('should call router navigate when userService responds without error', () => {
-      userService.register.and.returnValue(of({}));
+      authService.register.and.returnValue(of({}));
       const expectedUrl = '/';
 
       component.onSubmit();
@@ -129,14 +117,14 @@ fdescribe('RegisterComponent', () => {
     });
 
     it('should not call userService when form is invalid', () => {
-      userService.register.and.returnValue(of({}));
+      authService.register.and.returnValue(of({}));
       component.registerForm.patchValue({
         username: 'test'
       });
 
       component.onSubmit();
 
-      expect(userService.register).not.toHaveBeenCalled();
+      expect(authService.register).not.toHaveBeenCalled();
     });
   });
 });
