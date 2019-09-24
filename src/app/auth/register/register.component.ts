@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../auth.service';
 import { NotificationService } from '../../shared/notification/notification.service';
 
 import { NotificationType } from '../../shared/notification/enums/notification-type.enum';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
 
     // TODO: proper error handling
     this.isLoading = true;
+
     this.authService.register(this.registerForm.value).subscribe(
       () => {
         this.notificationService.showNotification('Account created successfully!', NotificationType.SUCCESS);

@@ -15,7 +15,7 @@ import { fakeBackendProvider } from '../shared/helpers/fake-backend';
 import { throwIfAlreadyLoaded } from '../shared/utils/module-import-guard';
 
 @NgModule({
-  imports: [AuthModule, HttpClientModule, LayoutModule, SharedModule],
+  imports: [AuthModule.forRoot(), HttpClientModule, LayoutModule.forRoot(), SharedModule.forRoot()],
   providers: [
     AuthGuard,
     SharedModule,

@@ -2,16 +2,16 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTable } from '@angular/material';
 import { MatTableDataSource } from '@angular/material';
 
-import { CandidateService } from './candidate.service';
+import { CandidateService } from '../candidate.service';
 
 import { Candidate } from '../interfaces/candidate.interface';
 
 @Component({
-  selector: 'app-candidates-list',
-  templateUrl: './candidates-list.component.html',
-  styleUrls: ['./candidates-list.component.scss']
+  selector: 'app-candidate-list',
+  templateUrl: './candidate-list.component.html',
+  styleUrls: ['./candidate-list.component.scss']
 })
-export class CandidatesListComponent implements AfterViewInit, OnInit {
+export class CandidateListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatTable, { static: false }) table: MatTable<Candidate>;

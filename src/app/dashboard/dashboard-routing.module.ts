@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from '../auth/guards/auth.guard';
-
-import { CandidatesListComponent } from './candidates-list/candidates-list.component';
-
 const routes: Routes = [
-  { path: '', redirectTo: 'candidates-list', pathMatch: 'full' },
-  { path: 'candidates-list', component: CandidatesListComponent, canActivate: [AuthGuard] }
+  { path: '', redirectTo: 'candidate', pathMatch: 'full' },
+  { path: 'candidate', loadChildren: () => import('./candidate/candidate.module').then(m => m.CandidateModule) }
 ];
 
 @NgModule({

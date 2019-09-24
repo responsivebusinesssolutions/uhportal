@@ -1,10 +1,10 @@
-<div class="candidates-list">
-  <div class="candidates-list__table-header">
+<div class="candidate-list">
+  <div class="candidate-list__table-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
     </mat-form-field>
   </div>
-  <table mat-table class="candidates-list__table" matSort aria-label="Elements">
+  <table mat-table class="candidate-list__table" matSort aria-label="Elements">
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
@@ -31,8 +31,8 @@
     #paginator
     [length]="dataSource?.data.length"
     [pageIndex]="0"
-    [pageSize]="5"
     [pageSizeOptions]="[5, 10, 100, 250]"
+    [pageSize]="5"
   >
   </mat-paginator>
 </div>
