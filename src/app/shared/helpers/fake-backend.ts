@@ -10,10 +10,8 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 
-import { User } from 'src/app/auth/interfaces/user.interface';
-
 // Array in local storage for registered users
-const users: Array<User> = JSON.parse(localStorage.getItem('users')) || [];
+const users = JSON.parse(localStorage.getItem('users')) || [];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
