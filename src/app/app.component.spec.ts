@@ -7,8 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './layout/home/home.component';
 import { LoginComponent } from './auth/login/login.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { RegisterComponent } from './auth/register/register.component';
 
 describe('AppComponent', () => {
@@ -22,7 +22,7 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule
       ],
-      declarations: [AppComponent, LoginComponent, HomeComponent, RegisterComponent],
+      declarations: [AppComponent, LoginComponent, MainLayoutComponent, RegisterComponent],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));

@@ -4,12 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoggedInGuard } from './auth/guards/logged-in.guard';
 
-import { HomeComponent } from './layout/home/home.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: MainLayoutComponent,
     children: [
       {
         path: 'auth',
