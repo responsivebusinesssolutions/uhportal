@@ -1,5 +1,11 @@
 <app-toolbar></app-toolbar>
 
 <div class="main-layout__middle-container">
-  <router-outlet></router-outlet>
+  <ng-container *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </ng-container>
+
+  <ng-container *ngIf="!isLoading">
+    <router-outlet></router-outlet>
+  </ng-container>
 </div>

@@ -1,6 +1,6 @@
-import { CandidateRoutingModule } from './candidate-routing.module';
+import { CandidateRoutingModule } from './candidates-routing.module';
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { CandidateListComponent } from './candidate-list/candidate-list.component';
 
@@ -8,4 +8,4 @@ import { CandidateListComponent } from './candidate-list/candidate-list.componen
   declarations: [CandidateListComponent],
   imports: [CandidateRoutingModule, SharedModule]
 })
-export class CandidateModule {}
+export class CandidatesModule {}

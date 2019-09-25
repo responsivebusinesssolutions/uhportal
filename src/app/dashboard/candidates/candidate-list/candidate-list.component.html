@@ -1,7 +1,7 @@
 <div class="candidate-list">
   <div class="candidate-list__table-header">
     <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
+      <input matInput (keyup)="onApplyFilter($event.target.value)" placeholder="Filter" />
     </mat-form-field>
   </div>
   <table mat-table class="candidate-list__table" matSort aria-label="Elements">
