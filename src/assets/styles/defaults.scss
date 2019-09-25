@@ -1,3 +1,5 @@
+@import '../styles/theme';
+
 // BASE VALUES
 $background-color: #eeeeee;
 $base-width: 1190px;
@@ -7,6 +9,9 @@ $header-height: 4rem;
 // COLORS
 $color-white: rgba(255, 255, 255, 0.87);
 $color-white-hover: rgba(255, 255, 255, 0.71);
+$color-primary: map_get($theme-color-primary, 600);
+$color-secondary: map_get($theme-color-secondary, 200);
+$color-accent: map_get($theme-color-accent, 500);
 
 // MIXINS
 @mixin unselectable {

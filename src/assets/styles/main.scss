@@ -1,6 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
-@import './defaults';
+@import '../styles/theme';
+@import '../styles/defaults';
 
 html,
 body {
@@ -35,5 +34,5 @@ mat-error {
 }
 
 .notification-success {
-  background-color: rgba(37, 182, 32, 0.875) !important;
+  background-color: $color-primary !important;
 }
