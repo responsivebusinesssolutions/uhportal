@@ -1,13 +1,13 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 
-import { HeaderComponent } from './header/header.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
-  declarations: [HeaderComponent, MainLayoutComponent],
+  declarations: [MainLayoutComponent, ToolbarComponent],
   imports: [SharedModule],
-  exports: [HeaderComponent]
+  exports: [ToolbarComponent]
 })
 export class LayoutModule {
   static forRoot(): ModuleWithProviders {

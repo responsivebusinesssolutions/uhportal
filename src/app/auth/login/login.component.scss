@@ -21,9 +21,8 @@
     margin-top: 10px;
     width: 100%;
 
-    span {
-      display: flex;
-      justify-content: center;
+    &__icon {
+      font-size: 1rem;
     }
   }
 

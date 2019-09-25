@@ -26,9 +26,7 @@
                 <mat-spinner [diameter]="20" color="primary"></mat-spinner>
               </div>
             </ng-container>
-            <ng-container *ngIf="!isLoading">
-              <span>Login</span>
-            </ng-container>
+            <ng-container *ngIf="!isLoading"> <mat-icon>exit_to_app</mat-icon> <span>&nbsp;Login</span> </ng-container>
           </button>
         </form>
       </mat-card-content>

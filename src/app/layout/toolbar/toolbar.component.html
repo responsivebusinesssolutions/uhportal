@@ -1,0 +1,22 @@
+<mat-toolbar class="toolbar" color="primary">
+  <div class="toolbar__wrapper">
+    <div (click)="onClickLogo()" class="toolbar__logo">
+      <div class="toolbar__logo__icon">
+        <mat-icon [inline]="true">camera</mat-icon>
+      </div>
+      <div class="toolbar__logo__text">
+        UH Portal
+      </div>
+    </div>
+    <div class="toolbar__menu">
+      <ng-container *ngIf="!isLoggedIn()">
+        <a routerLink="/auth/login">Login</a>
+        <a routerLink="/auth/register">Register</a>
+      </ng-container>
+
+      <ng-container *ngIf="isLoggedIn()">
+        <a (click)="onLogout()">Logout</a>
+      </ng-container>
+    </div>
+  </div>
+</mat-toolbar>

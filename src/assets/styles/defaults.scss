@@ -5,6 +5,8 @@ $default-transition: 500ms;
 $header-height: 4rem;
 
 // COLORS
+$color-white: rgba(255, 255, 255, 0.87);
+$color-white-hover: rgba(255, 255, 255, 0.71);
 
 // MIXINS
 @mixin unselectable {
@@ -15,4 +17,4 @@ $header-height: 4rem;
 }
 
 // Z-INDEXES
-$header-z-index: 3;
+$toolbar-z-index: 3;

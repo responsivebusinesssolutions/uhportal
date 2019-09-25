@@ -6,11 +6,11 @@ import { AuthService } from '../../auth/auth.service';
 import { User } from 'src/app/auth/interfaces/user.interface';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-toolbar',
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class ToolbarComponent implements OnInit {
   currentUser: User;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -21,6 +21,10 @@ export class HeaderComponent implements OnInit {
 
   isLoggedIn(): boolean {
     return !!this.authService.currentUserValue;
+  }
+
+  onClickLogo(): void {
+    this.router.navigate(['/']);
   }
 
   onLogout(): void {

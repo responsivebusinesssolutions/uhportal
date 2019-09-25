@@ -2,6 +2,9 @@
 
 .main-layout {
   &__middle-container {
-    min-height: calc(100% - #{$header-height});
+    margin: 0 auto;
+    max-width: $base-width;
+    min-height: calc(100vh - $toolbar-height);
+    padding: $header-height + 1rem 1rem 1rem 1rem;
   }
 }
