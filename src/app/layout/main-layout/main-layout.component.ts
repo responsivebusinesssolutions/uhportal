@@ -16,9 +16,6 @@ export class MainLayoutComponent implements OnDestroy, OnInit, RouteTransitionLo
   isLoading: boolean;
   loadingSubscription: Subscription;
 
-  // TODO: Check async template pipe
-  // TODO: routing fix?
-
   constructor(private authService: AuthService, private loadingService: LoadingService, private router: Router) {}
 
   ngOnDestroy(): void {
@@ -50,6 +47,8 @@ export class MainLayoutComponent implements OnDestroy, OnInit, RouteTransitionLo
   private navigateToDashboard(): void {
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/dashboard']);
+    } else {
+      this.router.navigate(['/auth/login']);
     }
   }
 

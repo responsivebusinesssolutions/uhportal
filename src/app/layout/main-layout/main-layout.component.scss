@@ -5,6 +5,6 @@
     margin: 0 auto;
     max-width: $base-width;
     min-height: calc(100vh - $toolbar-height);
-    padding: $header-height + 1rem 1rem 1rem 1rem;
+    padding: $toolbar-height + 1rem 1rem 1rem 1rem;
   }
 }

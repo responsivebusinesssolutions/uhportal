@@ -16,6 +16,10 @@
   top: 0;
   z-index: $toolbar-z-index;
 
+  button {
+    color: $color-white;
+  }
+
   &__wrapper {
     align-items: center;
     display: flex;
@@ -27,19 +31,41 @@
   }
 
   &__menu {
-    a {
-      color: $color-white;
-      margin-right: 0.75rem;
-      text-decoration: none;
+    display: flex;
+    height: $toolbar-height;
+    justify-content: space-between;
+    width: 100%;
 
-      &:last-child {
-        margin-right: 0;
+    &__left {
+      display: flex;
+
+      &__tile {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        font-size: 0.875rem;
+        height: 100%;
+        padding: 0 1rem;
+        transition: $default-transition;
+
+        @include unselectable;
+
+        &--active {
+          background-color: #106156;
+          transition: $default-transition;
+        }
       }
+    }
+
+    &__right {
+      align-items: center;
+      display: flex;
     }
   }
 
   &__logo {
     align-items: center;
+    color: $color-white;
     display: flex;
     transition: $default-transition;
 

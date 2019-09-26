@@ -9,32 +9,45 @@
       </div>
     </div>
     <div class="toolbar__menu">
-      <ng-container *ngIf="!isLoggedIn()">
-        <ng-container *ngIf="isLoginPage()">
-          <a routerLink="/auth/register">
-            <button aria-label="Login" mat-button>
-              <mat-icon>add_circle</mat-icon>
-              Create account
-            </button>
-          </a>
+      <div class="toolbar__menu__left">
+        <ng-container *ngIf="isLoggedIn()">
+          <div
+            [routerLink]="['/dashboard/candidates']"
+            class="toolbar__menu__left__tile"
+            routerLinkActive="toolbar__menu__left__tile--active"
+          >
+            Candidates
+          </div>
+        </ng-container>
+      </div>
+      <div class="toolbar__menu__right">
+        <ng-container *ngIf="!isLoggedIn()">
+          <ng-container *ngIf="isLoginPage()">
+            <a routerLink="/auth/register">
+              <button aria-label="Login" color="accent" mat-button>
+                <mat-icon>add_circle</mat-icon>
+                Create account
+              </button>
+            </a>
+          </ng-container>
+
+          <ng-container *ngIf="isRegisterPage()">
+            <a routerLink="/auth/login">
+              <button aria-label="Login" color="accent" mat-button>
+                <mat-icon>exit_to_app</mat-icon>
+                Login
+              </button>
+            </a>
+          </ng-container>
         </ng-container>
 
-        <ng-container *ngIf="isRegisterPage()">
-          <a routerLink="/auth/login">
-            <button aria-label="Login" mat-button>
-              <mat-icon>exit_to_app</mat-icon>
-              Login
-            </button>
-          </a>
+        <ng-container *ngIf="isLoggedIn()">
+          <button (click)="onLogout()" aria-label="Logout" color="accent" mat-button>
+            <mat-icon>exit_to_app</mat-icon>
+            Logout
+          </button>
         </ng-container>
-      </ng-container>
-
-      <ng-container *ngIf="isLoggedIn()">
-        <button (click)="onLogout()" aria-label="Logout" mat-button>
-          <mat-icon>exit_to_app</mat-icon>
-          Logout
-        </button>
-      </ng-container>
+      </div>
     </div>
   </div>
 </mat-toolbar>

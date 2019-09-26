@@ -11,7 +11,6 @@ import { User } from './interfaces/user.interface';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
-// TODO: check observable response generic types
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;

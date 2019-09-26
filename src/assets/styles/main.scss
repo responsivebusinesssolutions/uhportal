@@ -16,6 +16,10 @@ body {
   box-sizing: inherit;
 }
 
+*:focus {
+  outline: none;
+}
+
 mat-error {
   color: red !important;
 }
