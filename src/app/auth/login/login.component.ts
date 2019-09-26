@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../auth.service';
@@ -43,12 +44,16 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(loginInput).subscribe(
       () => {
-        this.notificationService.showNotification('Logged in successfully!', NotificationType.SUCCESS);
+        this.notificationService.showNotification('You have successfully logged in!', NotificationType.SUCCESS);
         this.router.navigate(['/dashboard']);
       },
-      () => {
+      (err: HttpErrorResponse) => {
+        if (err.error.status === 401) {
+          this.loginForm.get('username').setErrors({ invalidCredentials: true });
+          this.loginForm.get('password').setErrors({ invalidCredentials: true });
+        }
+
         this.isLoading = false;
-        this.notificationService.showNotification('Incorrect username / password!', NotificationType.ERROR);
       }
     );
   }

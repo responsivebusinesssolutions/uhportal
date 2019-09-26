@@ -10,14 +10,20 @@
             <mat-form-field>
               <mat-label for="username">Username</mat-label>
               <input formControlName="username" matInput type="text" />
-              <mat-error *ngIf="loginForm.get('username').invalid">Username is required</mat-error>
+              <mat-error *ngIf="loginForm.get('username').hasError('required')">Username is required</mat-error>
+              <mat-error *ngIf="loginForm.get('username').hasError('invalidCredentials')"
+                >Invalid username / password</mat-error
+              >
             </mat-form-field>
           </div>
           <div class="login__row">
             <mat-form-field>
               <mat-label for="password">Password</mat-label>
               <input formControlName="password" matInput type="password" />
-              <mat-error *ngIf="loginForm.get('password').invalid">Password is required</mat-error>
+              <mat-error *ngIf="loginForm.get('password').hasError('required')">Password is required</mat-error>
+              <mat-error *ngIf="loginForm.get('password').hasError('invalidCredentials')"
+                >Invalid username / password</mat-error
+              >
             </mat-form-field>
           </div>
           <button [disabled]="isLoading" class="login__loading-button" color="primary" mat-raised-button>
