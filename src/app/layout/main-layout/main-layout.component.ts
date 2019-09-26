@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 
+import { AuthService } from 'src/app/auth/auth.service';
 import { LoadingService } from 'src/app/shared/components/loading/loading.service';
 
 import { RouteTransitionLoading } from 'src/app/shared/components/loading/interfaces/route-transition-loading.interface';
@@ -16,8 +17,9 @@ export class MainLayoutComponent implements OnDestroy, OnInit, RouteTransitionLo
   loadingSubscription: Subscription;
 
   // TODO: Check async template pipe
+  // TODO: routing fix?
 
-  constructor(private loadingService: LoadingService, private router: Router) {}
+  constructor(private authService: AuthService, private loadingService: LoadingService, private router: Router) {}
 
   ngOnDestroy(): void {
     this.unsubscribeFromRouteTransitionLoadingEvents();
@@ -46,7 +48,9 @@ export class MainLayoutComponent implements OnDestroy, OnInit, RouteTransitionLo
   }
 
   private navigateToDashboard(): void {
-    this.router.navigate(['/dashboard']);
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   private subscribeToRouterEvents(): void {
