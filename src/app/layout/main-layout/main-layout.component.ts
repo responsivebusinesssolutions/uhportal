@@ -3,15 +3,15 @@ import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 
 import { LoadingService } from 'src/app/shared/components/loading/loading.service';
 
-import { Loading } from 'src/app/shared/components/loading/interfaces/loading.interface';
-import { Observable, Subscription } from 'rxjs';
+import { RouteTransitionLoading } from 'src/app/shared/components/loading/interfaces/route-transition-loading.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss']
 })
-export class MainLayoutComponent implements OnDestroy, Loading, OnInit {
+export class MainLayoutComponent implements OnDestroy, OnInit, RouteTransitionLoading {
   isLoading: boolean;
   loadingSubscription: Subscription;
 
@@ -20,13 +20,13 @@ export class MainLayoutComponent implements OnDestroy, Loading, OnInit {
   constructor(private loadingService: LoadingService, private router: Router) {}
 
   ngOnDestroy(): void {
-    this.loadingSubscription.unsubscribe();
+    this.unsubscribeFromRouteTransitionLoadingEvents();
   }
 
   ngOnInit(): void {
     this.navigateToDashboard();
-    this.subscribeToLoadingEvents();
     this.subscribeToRouterEvents();
+    this.subscribeToRouteTransitionLoadingEvents();
   }
 
   subscribeToLoadingEvents(): void {
@@ -35,7 +35,13 @@ export class MainLayoutComponent implements OnDestroy, Loading, OnInit {
     });
   }
 
-  unsubscribeFromLoadingEvents(): void {
+  subscribeToRouteTransitionLoadingEvents(): void {
+    this.loadingSubscription = this.loadingService.loadingEmitter.subscribe((res: boolean) => {
+      this.isLoading = res;
+    });
+  }
+
+  unsubscribeFromRouteTransitionLoadingEvents(): void {
     this.loadingSubscription.unsubscribe();
   }
 
