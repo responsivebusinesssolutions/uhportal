@@ -1,0 +1,63 @@
+@import '../../../assets/styles/defaults';
+@import '../../../assets/styles/theme';
+
+.toolbar {
+  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  color: $color-white;
+  display: block;
+  height: 4rem;
+  left: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $toolbar-z-index;
+
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    margin: 0 auto;
+    max-width: $base-width;
+    padding: 0 1rem;
+  }
+
+  &__menu {
+    a {
+      color: $color-white;
+      margin-right: 0.75rem;
+      text-decoration: none;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__logo {
+    align-items: center;
+    display: flex;
+    transition: $default-transition;
+
+    &:hover {
+      color: $color-white-hover;
+      cursor: pointer;
+    }
+
+    &__icon {
+      align-items: center;
+      display: flex;
+      font-size: 2rem;
+    }
+
+    &__text {
+      margin-left: 0.5rem;
+      margin-right: 2.5rem;
+    }
+
+    @include unselectable;
+  }
+}

@@ -1,0 +1,10 @@
+@import '../../../assets/styles/defaults';
+
+.main-layout {
+  &__middle-container {
+    margin: 0 auto;
+    max-width: $base-width;
+    min-height: calc(100vh - $toolbar-height);
+    padding: $header-height + 1rem 1rem 1rem 1rem;
+  }
+}

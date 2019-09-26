@@ -1,8 +1,10 @@
-.login {
-  margin: auto;
-  padding: 8% 0 0;
-  width: 360px;
+::ng-deep {
+  div.mat-card-header-text {
+    margin-left: 0 !important;
+  }
+}
 
+.login {
   &__row {
     margin-bottom: 0.5rem;
 
@@ -19,9 +21,8 @@
     margin-top: 10px;
     width: 100%;
 
-    span {
-      display: flex;
-      justify-content: center;
+    &__icon {
+      font-size: 1rem;
     }
   }
 

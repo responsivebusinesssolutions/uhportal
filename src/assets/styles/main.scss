@@ -1,12 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '../styles/theme';
+@import '../styles/defaults';
 
+html,
 body {
-  background-color: #9fa8da;
+  background-color: $background-color;
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-mat-card {
-  border-radius: 0 !important;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 mat-error {
@@ -20,15 +27,12 @@ mat-error {
 
 .notification-error {
   background-color: rgba(226, 37, 37, 0.875) !important;
-  color: white;
 }
 
 .notification-warning {
   background-color: rgba(248, 252, 15, 0.875) !important;
-  color: white;
 }
 
 .notification-success {
-  background-color: rgba(37, 182, 32, 0.875) !important;
-  color: white;
+  background-color: $color-primary !important;
 }

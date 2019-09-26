@@ -3,6 +3,7 @@ import { MatPaginator, MatSort, MatTable } from '@angular/material';
 import { MatTableDataSource } from '@angular/material';
 
 import { CandidateService } from '../candidate.service';
+import { LoadingService } from 'src/app/shared/components/loading/loading.service';
 
 import { Candidate } from '../interfaces/candidate.interface';
 
@@ -19,7 +20,7 @@ export class CandidateListComponent implements AfterViewInit, OnInit {
   dataSource: MatTableDataSource<Candidate>;
   displayedColumns = ['id', 'name', 'email'];
 
-  constructor(private candidateService: CandidateService) {}
+  constructor(private candidateService: CandidateService, private loadingService: LoadingService) {}
 
   ngOnInit(): void {
     this.loadTableData();
@@ -36,10 +37,13 @@ export class CandidateListComponent implements AfterViewInit, OnInit {
   }
 
   private loadTableData() {
+    // this.loadingService.loadingEmitter.emit(true);
+
     this.dataSource = new MatTableDataSource();
 
-    this.candidateService.getCandidates().subscribe(data => {
-      this.dataSource.data = data;
+    this.candidateService.getCandidates().subscribe((res: Array<Candidate>) => {
+      this.dataSource.data = res;
+      // this.loadingService.loadingEmitter.emit(true);
     });
   }
 }
