@@ -23,7 +23,7 @@ export class CandidateListComponent implements AfterViewInit, OnInit {
   constructor(private candidateService: CandidateService, private loadingService: LoadingService) {}
 
   ngOnInit(): void {
-    this.loadTableData();
+    this.loadCandidates();
   }
 
   ngAfterViewInit(): void {
@@ -36,14 +36,13 @@ export class CandidateListComponent implements AfterViewInit, OnInit {
     this.dataSource.filter = searchKey.trim().toLocaleLowerCase();
   }
 
-  private loadTableData() {
-    // this.loadingService.loadingEmitter.emit(true);
-
+  private loadCandidates() {
+    this.loadingService.push(true);
     this.dataSource = new MatTableDataSource();
 
     this.candidateService.getCandidates().subscribe((res: Array<Candidate>) => {
       this.dataSource.data = res;
-      // this.loadingService.loadingEmitter.emit(true);
+      this.loadingService.push(false);
     });
   }
 }

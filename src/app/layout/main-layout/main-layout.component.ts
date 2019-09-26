@@ -1,47 +1,30 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 
 import { AuthService } from 'src/app/auth/auth.service';
 import { LoadingService } from 'src/app/shared/components/loading/loading.service';
 
-import { RouteTransitionLoading } from 'src/app/shared/components/loading/interfaces/route-transition-loading.interface';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
-  styleUrls: ['./main-layout.component.scss']
+  styleUrls: ['./main-layout.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainLayoutComponent implements OnDestroy, OnInit, RouteTransitionLoading {
-  isLoading: boolean;
-  loadingSubscription: Subscription;
+export class MainLayoutComponent implements OnInit {
+  isLoading$: Observable<boolean>;
 
   constructor(private authService: AuthService, private loadingService: LoadingService, private router: Router) {}
-
-  ngOnDestroy(): void {
-    this.unsubscribeFromRouteTransitionLoadingEvents();
-  }
 
   ngOnInit(): void {
     this.navigateToDashboard();
     this.subscribeToRouterEvents();
-    this.subscribeToRouteTransitionLoadingEvents();
+    this.getLoadingStatus();
   }
 
-  subscribeToLoadingEvents(): void {
-    this.loadingSubscription = this.loadingService.loadingEmitter.subscribe((res: boolean) => {
-      this.isLoading = res;
-    });
-  }
-
-  subscribeToRouteTransitionLoadingEvents(): void {
-    this.loadingSubscription = this.loadingService.loadingEmitter.subscribe((res: boolean) => {
-      this.isLoading = res;
-    });
-  }
-
-  unsubscribeFromRouteTransitionLoadingEvents(): void {
-    this.loadingSubscription.unsubscribe();
+  private getLoadingStatus(): void {
+    this.isLoading$ = this.loadingService.loadingSubject;
   }
 
   private navigateToDashboard(): void {

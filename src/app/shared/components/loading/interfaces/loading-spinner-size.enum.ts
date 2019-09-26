@@ -1,5 +1,5 @@
 export enum LoadingSpinnerSize {
-  S = 10,
-  M = 25,
-  L = 50
+  S = 25,
+  M = 50,
+  L = 75
 }
