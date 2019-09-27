@@ -7,7 +7,7 @@
     </div>
   </ng-container>
 
-  <div [hidden]="isLoading$ | async">
+  <div [hidden]="isLoading$ | async" class="main-layout__router-outlet">
     <router-outlet></router-outlet>
   </div>
 </div>
