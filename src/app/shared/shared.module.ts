@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { LoadingSpinnerComponent } from './components/loading/loading-spinner/loading-spinner.component';
-import { RoleDirective } from '../auth/directives/role.directive';
+import { RoleDirective } from './directives/role.directive';
 
 @NgModule({
   declarations: [BreadcrumbComponent, LoadingSpinnerComponent, RoleDirective],

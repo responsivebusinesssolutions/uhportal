@@ -1,13 +1,16 @@
 import { Directive, Input, OnInit, ViewContainerRef, TemplateRef } from '@angular/core';
 
-import { AuthService } from '../auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
-import { Role } from '../enums/role.enum';
+import { Role } from '../../auth/enums/role.enum';
+import { Utils } from 'src/app/shared/utils/utils';
 
 @Directive({
   selector: '[appRole]'
 })
 export class RoleDirective implements OnInit {
+  // TODO: TESTING
+
   @Input() appRole: Array<Role>;
 
   isVisible: boolean;
@@ -27,7 +30,7 @@ export class RoleDirective implements OnInit {
       this.isVisible = false;
     } else {
       // Check if user has the right role
-      if (this.userRoles.filter(x => this.appRole.includes(x)).length > 0) {
+      if (Utils.arraysIntersect(this.userRoles, this.appRole)) {
         if (!this.isVisible) {
           this.isVisible = true;
           this.viewContainerRef.createEmbeddedView(this.templateRef);
