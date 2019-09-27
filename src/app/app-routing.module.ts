@@ -20,10 +20,11 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
         canActivateChild: [AuthGuard]
-      }
+      },
+      { path: 'error', loadChildren: () => import('./error/error.module').then(m => m.ErrorModule) }
     ]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'error' }
 ];
 
 @NgModule({

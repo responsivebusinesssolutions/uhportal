@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { NotificationService } from '../../shared/notification/notification.service';
 
+import { ErrorType } from 'src/app/error/enums/error-type.enum';
 import { NotificationType } from '../../shared/notification/enums/notification-type.enum';
 
 @Component({
@@ -13,7 +14,7 @@ import { NotificationType } from '../../shared/notification/enums/notification-t
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  error: string;
+  errorTypes = ErrorType;
   isLoading: boolean;
   registerForm: FormGroup;
 
@@ -33,7 +34,6 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    // TODO: proper error handling
     this.isLoading = true;
 
     this.authService.register(this.registerForm.value).subscribe(
@@ -41,13 +41,18 @@ export class RegisterComponent implements OnInit {
         this.notificationService.showNotification('Account created successfully!', NotificationType.SUCCESS);
         this.router.navigate(['/auth/login']);
       },
-      error => {
-        this.error = error;
-      },
-      () => {
+      (err: ErrorType) => {
+        this.handleFormErrors(err);
+
         this.isLoading = false;
       }
     );
+  }
+
+  private handleFormErrors(err: ErrorType): void {
+    if (err === ErrorType.USERNAME_IS_ALREADY_TAKEN) {
+      this.registerForm.get('username').setErrors({ usernameIsAlreadyTaken: true });
+    }
   }
 
   private initRegisterForm(): void {
