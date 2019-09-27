@@ -52,6 +52,7 @@
 
         &--active {
           background-color: #106156;
+          cursor: default;
           transition: $default-transition;
         }
       }

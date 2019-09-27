@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { LoadingService } from 'src/app/shared/components/loading/loading.service';
@@ -8,13 +8,17 @@ import { LoadingService } from 'src/app/shared/components/loading/loading.servic
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss']
 })
-export class MainLayoutComponent implements OnInit {
+export class MainLayoutComponent implements AfterViewChecked, OnInit {
   isLoading$: Observable<boolean>;
 
-  constructor(private loadingService: LoadingService) {}
+  constructor(private changeDetectorRef: ChangeDetectorRef, private loadingService: LoadingService) {}
 
   ngOnInit(): void {
     this.getLoadingStatus();
+  }
+
+  ngAfterViewChecked(): void {
+    this.changeDetectorRef.detectChanges();
   }
 
   private getLoadingStatus(): void {
