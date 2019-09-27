@@ -7,6 +7,7 @@ import { NotificationService } from '../shared/notification/notification.service
 
 import { LoginInput } from './models/login-input.model';
 import { NotificationType } from '../shared/notification/enums/notification-type.enum';
+import { Role } from './enums/role.enum';
 import { User } from './interfaces/user.interface';
 import { environment } from '../../environments/environment';
 
@@ -26,6 +27,10 @@ export class AuthService {
 
   getAllUsers(): Observable<Array<User>> {
     return this.httpClient.get<Array<User>>(`${environment.apiUrl}/users`);
+  }
+
+  getUserRoles(): Array<Role> {
+    return this.currentUserValue.roles;
   }
 
   isLoggedIn(): boolean {

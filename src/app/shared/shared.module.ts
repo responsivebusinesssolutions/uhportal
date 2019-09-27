@@ -6,9 +6,10 @@ import { RouterModule } from '@angular/router';
 
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { LoadingSpinnerComponent } from './components/loading/loading-spinner/loading-spinner.component';
+import { RoleDirective } from '../auth/directives/role.directive';
 
 @NgModule({
-  declarations: [BreadcrumbComponent, LoadingSpinnerComponent],
+  declarations: [BreadcrumbComponent, LoadingSpinnerComponent, RoleDirective],
   imports: [CommonModule, FormsModule, MaterialModule, ReactiveFormsModule, RouterModule],
   exports: [
     BreadcrumbComponent,
@@ -17,6 +18,7 @@ import { LoadingSpinnerComponent } from './components/loading/loading-spinner/lo
     MaterialModule,
     LoadingSpinnerComponent,
     ReactiveFormsModule,
+    RoleDirective,
     RouterModule
   ]
 })

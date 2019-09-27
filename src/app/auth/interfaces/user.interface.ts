@@ -4,7 +4,7 @@ export interface User {
   firstName: string;
   id: number;
   lastName: string;
-  role: Role;
+  roles: Array<Role>;
   token: string;
   username: string;
 }

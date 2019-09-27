@@ -6,8 +6,6 @@ import { LoggedInGuard } from './auth/guards/logged-in.guard';
 
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
-import { Role } from './auth/enums/role.enum';
-
 const routes: Routes = [
   {
     path: '',

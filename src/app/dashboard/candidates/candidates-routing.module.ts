@@ -11,7 +11,7 @@ const routes: Routes = [
     component: CandidateListComponent,
     pathMatch: 'prefix',
     canActivate: [RoleGuard],
-    data: { roles: [Role.HR_CONSULTANT], title: 'Candidate list' }
+    data: { roles: [Role.HR_CONSULTANT, Role.INTERNAL], title: 'Candidate list' }
   }
 ];
 

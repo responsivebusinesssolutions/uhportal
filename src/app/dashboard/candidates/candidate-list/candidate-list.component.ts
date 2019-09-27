@@ -6,6 +6,7 @@ import { CandidateService } from '../candidate.service';
 import { LoadingService } from 'src/app/shared/components/loading/loading.service';
 
 import { Candidate } from '../interfaces/candidate.interface';
+import { Role } from '../../../auth/enums/role.enum';
 
 @Component({
   selector: 'app-candidate-list',
@@ -19,6 +20,7 @@ export class CandidateListComponent implements AfterViewInit, OnInit {
 
   dataSource: MatTableDataSource<Candidate>;
   displayedColumns = ['id', 'name', 'email'];
+  roles = Role;
 
   constructor(private candidateService: CandidateService, private loadingService: LoadingService) {}
 

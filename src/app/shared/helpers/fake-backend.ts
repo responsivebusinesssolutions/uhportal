@@ -56,7 +56,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         firstName: user.firstName,
         id: user.id,
         lastName: user.lastName,
-        role: user.role,
+        roles: [user.roles],
         token: 'fake-jwt-token',
         username: user.username
       });
@@ -70,7 +70,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       }
 
       user.id = users.length ? Math.max(...users.map(u => u.id)) + 1 : 1;
-      user.role = Role.INTERNAL;
+      user.roles = [Role.INTERNAL];
 
       users.push(user);
       localStorage.setItem('users', JSON.stringify(users));
