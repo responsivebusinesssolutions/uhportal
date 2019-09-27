@@ -37,7 +37,6 @@ export class AuthService {
       map(user => {
         // Login successful if there's a JWT token in the response
         if (user && user.token) {
-          // store user details and JWT token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
 
           this.currentUserSubject.next(user);
