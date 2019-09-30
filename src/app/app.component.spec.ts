@@ -27,16 +27,9 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  xit('should create the app', () => {
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  xit(`should have as title 'UH Portal'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-
-    expect(app.title).toEqual('uhportal');
   });
 });

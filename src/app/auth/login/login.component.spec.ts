@@ -89,7 +89,7 @@ describe('LoginComponent', () => {
     expect(component.onSubmit).toHaveBeenCalledTimes(1);
   });
 
-  it('should call authenticationService with form values', () => {
+  it('should call authenticationService with form values', async(() => {
     // const username = 'user';
     // const password = 'password';
     // component.loginForm.patchValue({
@@ -100,5 +100,5 @@ describe('LoginComponent', () => {
     // component.onSubmit();
     // expect(authService.login).toHaveBeenCalledTimes(1);
     // expect(authService.login).toHaveBeenCalledWith(username, password);
-  });
+  }));
 });

@@ -1,5 +1,10 @@
-import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './../../shared/material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ToolbarComponent } from './toolbar.component';
 
 describe('ToolbarComponent', () => {
@@ -9,7 +14,15 @@ describe('ToolbarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ToolbarComponent],
-      imports: [HttpClientModule]
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
+        MaterialModule,
+        RouterTestingModule
+      ]
     }).compileComponents();
   }));
 
@@ -19,7 +32,7 @@ describe('ToolbarComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
