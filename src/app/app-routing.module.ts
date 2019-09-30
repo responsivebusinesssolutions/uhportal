@@ -6,7 +6,7 @@ import { LoggedInGuard } from './auth/guards/logged-in.guard';
 
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
-const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
@@ -29,7 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

@@ -6,7 +6,7 @@ import { CandidateService } from '../candidate.service';
 import { LoadingService } from 'src/app/shared/components/loading/loading.service';
 
 import { Candidate } from '../interfaces/candidate.interface';
-import { Role } from '../../../auth/enums/role.enum';
+import { Role } from '../../../shared/directives/role/enums/role.enum';
 
 @Component({
   selector: 'app-candidate-list',

@@ -1,16 +1,14 @@
-import { Directive, Input, OnInit, ViewContainerRef, TemplateRef } from '@angular/core';
+import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 
 import { AuthService } from 'src/app/auth/auth.service';
 
-import { Role } from '../../auth/enums/role.enum';
+import { Role } from './enums/role.enum';
 import { Utils } from 'src/app/shared/utils/utils';
 
 @Directive({
   selector: '[appRole]'
 })
 export class RoleDirective implements OnInit {
-  // TODO: TESTING
-
   @Input() appRole: Array<Role>;
 
   isVisible: boolean;

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CandidateListComponent } from './candidate-list/candidate-list.component';
-import { Role } from 'src/app/auth/enums/role.enum';
+import { Role } from 'src/app/shared/directives/role/enums/role.enum';
 import { RoleGuard } from 'src/app/auth/guards/role.guard';
 
 const routes: Routes = [
