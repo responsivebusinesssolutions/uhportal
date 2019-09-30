@@ -1,8 +1,17 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadingService {
-  loadingEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  private _loadingSubject: Subject<boolean> = new Subject<boolean>();
+
+  get loadingSubject(): Subject<boolean> {
+    return this._loadingSubject;
+  }
+
+  push(value: boolean): void {
+    this._loadingSubject.next(value);
+  }
 }

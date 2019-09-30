@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { NotificationService } from '../../shared/notification/notification.service';
 
+import { ErrorType } from 'src/app/error/enums/error-type.enum';
 import { LoginInput } from '../models/login-input.model';
 import { NotificationType } from '../../shared/notification/enums/notification-type.enum';
 
@@ -35,7 +36,6 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true;
 
-    // TODO: proper error handling
     const loginInput: LoginInput = new LoginInput(
       this.loginForm.get('username').value,
       this.loginForm.get('password').value
@@ -43,14 +43,22 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(loginInput).subscribe(
       () => {
-        this.notificationService.showNotification('Logged in successfully!', NotificationType.SUCCESS);
+        this.notificationService.showNotification('You have successfully logged in!', NotificationType.SUCCESS);
         this.router.navigate(['/dashboard']);
       },
-      () => {
+      (err: ErrorType) => {
+        this.handleFormErrors(err);
+
         this.isLoading = false;
-        this.notificationService.showNotification('Incorrect username / password!', NotificationType.ERROR);
       }
     );
+  }
+
+  private handleFormErrors(err: ErrorType): void {
+    if (err === ErrorType.INVALID_USERNAME_OR_PASSWORD) {
+      this.loginForm.get('username').setErrors({ invalidUsernameOrPassword: true });
+      this.loginForm.get('password').setErrors({ invalidUsernameOrPassword: true });
+    }
   }
 
   private initLoginForm(): void {

@@ -1,10 +1,11 @@
-@import '../styles/theme';
 @import '../styles/defaults';
+@import '../styles/theme';
 
 html,
 body {
   background-color: $background-color;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -16,8 +17,14 @@ body {
   box-sizing: inherit;
 }
 
-mat-error {
-  color: red !important;
+*:focus {
+  outline: none;
+}
+
+h1 {
+  color: #444;
+
+  @include unselectable;
 }
 
 .mat-simple-snackbar-action {

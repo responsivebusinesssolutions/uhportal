@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, CanActivateChild, Router, RouterStateSnapshot } from '@angular/router';
+import { CanActivateChild, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
 import { AuthService } from '../auth.service';
@@ -7,7 +7,7 @@ import { AuthService } from '../auth.service';
 export class LoggedInGuard implements CanActivateChild {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivateChild(activatedRouteSnapshot: ActivatedRouteSnapshot, routerStateSnapshot: RouterStateSnapshot): boolean {
+  canActivateChild(): boolean {
     if (!this.authService.isLoggedIn()) {
       return true;
     }

@@ -7,11 +7,11 @@ import { NotificationService } from '../shared/notification/notification.service
 
 import { LoginInput } from './models/login-input.model';
 import { NotificationType } from '../shared/notification/enums/notification-type.enum';
+import { Role } from './enums/role.enum';
 import { User } from './interfaces/user.interface';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
-// TODO: check observable response generic types
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
@@ -29,6 +29,10 @@ export class AuthService {
     return this.httpClient.get<Array<User>>(`${environment.apiUrl}/users`);
   }
 
+  getUserRoles(): Array<Role> {
+    return this.currentUserValue.roles;
+  }
+
   isLoggedIn(): boolean {
     return !!this.currentUserValue;
   }
@@ -38,7 +42,6 @@ export class AuthService {
       map(user => {
         // Login successful if there's a JWT token in the response
         if (user && user.token) {
-          // store user details and JWT token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
 
           this.currentUserSubject.next(user);

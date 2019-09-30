@@ -23,6 +23,14 @@ export class ToolbarComponent implements OnInit {
     return !!this.authService.currentUserValue;
   }
 
+  isLoginPage(): boolean {
+    return this.router.url.indexOf('/auth/login') > -1;
+  }
+
+  isRegisterPage(): boolean {
+    return this.router.url.indexOf('/auth/register') > -1;
+  }
+
   onClickLogo(): void {
     this.router.navigate(['/']);
   }

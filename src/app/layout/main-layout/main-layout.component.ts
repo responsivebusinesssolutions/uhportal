@@ -1,59 +1,27 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { LoadingService } from 'src/app/shared/components/loading/loading.service';
-
-import { RouteTransitionLoading } from 'src/app/shared/components/loading/interfaces/route-transition-loading.interface';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss']
 })
-export class MainLayoutComponent implements OnDestroy, OnInit, RouteTransitionLoading {
-  isLoading: boolean;
-  loadingSubscription: Subscription;
+export class MainLayoutComponent implements AfterViewChecked, OnInit {
+  isLoading$: Observable<boolean>;
 
-  // TODO: Check async template pipe
-
-  constructor(private loadingService: LoadingService, private router: Router) {}
-
-  ngOnDestroy(): void {
-    this.unsubscribeFromRouteTransitionLoadingEvents();
-  }
+  constructor(private changeDetectorRef: ChangeDetectorRef, private loadingService: LoadingService) {}
 
   ngOnInit(): void {
-    this.navigateToDashboard();
-    this.subscribeToRouterEvents();
-    this.subscribeToRouteTransitionLoadingEvents();
+    this.getLoadingStatus();
   }
 
-  subscribeToLoadingEvents(): void {
-    this.loadingSubscription = this.loadingService.loadingEmitter.subscribe((res: boolean) => {
-      this.isLoading = res;
-    });
+  ngAfterViewChecked(): void {
+    this.changeDetectorRef.detectChanges();
   }
 
-  subscribeToRouteTransitionLoadingEvents(): void {
-    this.loadingSubscription = this.loadingService.loadingEmitter.subscribe((res: boolean) => {
-      this.isLoading = res;
-    });
-  }
-
-  unsubscribeFromRouteTransitionLoadingEvents(): void {
-    this.loadingSubscription.unsubscribe();
-  }
-
-  private navigateToDashboard(): void {
-    this.router.navigate(['/dashboard']);
-  }
-
-  private subscribeToRouterEvents(): void {
-    this.router.events.subscribe((event: RouterEvent) => {
-      if (event instanceof NavigationEnd && this.router.url === '/') {
-        this.navigateToDashboard();
-      }
-    });
+  private getLoadingStatus(): void {
+    this.isLoading$ = this.loadingService.loadingSubject;
   }
 }

@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { LoggedInGuard } from '../auth/guards/logged-in.guard';
+import { RoleGuard } from '../auth/guards/role.guard';
 
 import { ErrorInterceptor } from '../shared/interceptors/error.interceptor';
 import { RequestInterceptor } from '../shared/interceptors/request.interceptor';
@@ -18,6 +19,7 @@ import { throwIfAlreadyLoaded } from '../shared/utils/module-import-guard';
   imports: [AuthModule.forRoot(), HttpClientModule, LayoutModule.forRoot(), SharedModule.forRoot()],
   providers: [
     AuthGuard,
+    RoleGuard,
     SharedModule,
     LoggedInGuard,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

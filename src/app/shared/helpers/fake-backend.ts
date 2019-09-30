@@ -10,6 +10,9 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 
+import { ErrorType } from 'src/app/error/enums/error-type.enum';
+import { Role } from 'src/app/auth/enums/role.enum';
+
 // Array in local storage for registered users
 const users = JSON.parse(localStorage.getItem('users')) || [];
 
@@ -46,13 +49,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       const user = users.find(u => u.username === username && u.password === password);
 
       if (!user) {
-        return error('Username or password is incorrect');
+        return error(ErrorType.INVALID_USERNAME_OR_PASSWORD);
       }
 
       return ok({
         firstName: user.firstName,
         id: user.id,
         lastName: user.lastName,
+        roles: [user.roles],
         token: 'fake-jwt-token',
         username: user.username
       });
@@ -62,10 +66,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       const user = body;
 
       if (users.find(u => u.username === user.username)) {
-        return error('Username "' + user.username + '" is already taken');
+        return error(ErrorType.USERNAME_IS_ALREADY_TAKEN);
       }
 
       user.id = users.length ? Math.max(...users.map(u => u.id)) + 1 : 1;
+      user.roles = [Role.INTERNAL];
+
       users.push(user);
       localStorage.setItem('users', JSON.stringify(users));
 

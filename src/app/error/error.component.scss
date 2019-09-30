@@ -1,0 +1,26 @@
+@import '../../assets/styles/defaults';
+
+.error {
+  color: #444;
+  height: 100%;
+  font-weight: bold;
+  text-align: center;
+  transform: translateY(50%);
+
+  @include unselectable;
+
+  &__inner {
+    transform: translateY(-50%);
+  }
+
+  &__title {
+    font-size: 3rem;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-transform: uppercase;
+  }
+}

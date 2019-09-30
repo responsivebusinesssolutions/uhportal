@@ -11,6 +11,7 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'auth',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
@@ -20,10 +21,11 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
         canActivateChild: [AuthGuard]
-      }
+      },
+      { path: 'error', loadChildren: () => import('./error/error.module').then(m => m.ErrorModule) }
     ]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'error' }
 ];
 
 @NgModule({

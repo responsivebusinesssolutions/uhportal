@@ -1,11 +1,13 @@
 <app-toolbar></app-toolbar>
 
 <div class="main-layout__middle-container">
-  <ng-container *ngIf="isLoading">
-    s
+  <ng-container *ngIf="isLoading$ | async">
+    <div class="main-layout__middle-container__loading-container">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
   </ng-container>
 
-  <ng-container *ngIf="!isLoading">
+  <div [hidden]="isLoading$ | async">
     <router-outlet></router-outlet>
-  </ng-container>
+  </div>
 </div>
