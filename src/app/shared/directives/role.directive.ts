@@ -30,7 +30,7 @@ export class RoleDirective implements OnInit {
       this.isVisible = false;
     } else {
       // Check if user has the right role
-      if (Utils.arraysIntersect(this.userRoles, this.appRole)) {
+      if (Utils.arraysIntersect(this.userRoles, this.appRole).length > 0) {
         if (!this.isVisible) {
           this.isVisible = true;
           this.viewContainerRef.createEmbeddedView(this.templateRef);

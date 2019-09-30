@@ -16,7 +16,8 @@ export class RoleGuard implements CanActivate {
     // user has the proper permission to visit the path
     if (
       !isGuardedRoute ||
-      (isGuardedRoute && Utils.arraysIntersect(this.authService.getUserRoles(), activatedRouteSnapshot.data.roles))
+      (isGuardedRoute &&
+        Utils.arraysIntersect(this.authService.getUserRoles(), activatedRouteSnapshot.data.roles).length > 0)
     ) {
       return true;
     }
