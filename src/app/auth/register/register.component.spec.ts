@@ -6,8 +6,9 @@ import { MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/mate
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RegisterComponent } from './register.component';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-describe('LoginComponent', () => {
+describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
 
@@ -23,6 +24,7 @@ describe('LoginComponent', () => {
         MaterialModule,
         RouterTestingModule
       ],
+      providers: [FormBuilder],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
