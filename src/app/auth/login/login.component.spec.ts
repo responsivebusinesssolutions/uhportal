@@ -54,8 +54,7 @@ describe('LoginComponent', () => {
           provide: ActivatedRoute,
           useValue: { snapshot: { queryParams: { returnUrl: 'home' } } }
         }
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
+      ]
     })
       .compileComponents()
       .then(() => {

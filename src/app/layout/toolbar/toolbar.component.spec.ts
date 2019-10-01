@@ -1,5 +1,6 @@
-import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+
 import { ToolbarComponent } from './toolbar.component';
 
 describe('ToolbarComponent', () => {
@@ -11,15 +12,13 @@ describe('ToolbarComponent', () => {
       declarations: [ToolbarComponent],
       imports: [HttpClientModule]
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
