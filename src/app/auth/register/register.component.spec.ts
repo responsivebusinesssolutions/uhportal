@@ -33,15 +33,12 @@ describe('RegisterComponent', () => {
         { provide: Router, useClass: RouterStub }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(RegisterComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-        authService = TestBed.inject(AuthService);
-        router = TestBed.inject(Router);
-      });
+    }).compileComponents();
+    fixture = TestBed.createComponent(RegisterComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    authService = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
   }));
 
   it('should compile', () => {

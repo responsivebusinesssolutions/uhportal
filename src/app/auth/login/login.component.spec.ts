@@ -39,16 +39,14 @@ describe('LoginComponent', () => {
         { provide: ActivatedRoute, useValue: { snapshot: { queryParams: { returnUrl: '/dashboard' } } } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(LoginComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-        authService = TestBed.inject(AuthService);
-        router = TestBed.inject(Router);
-        activatedRoute = TestBed.inject(ActivatedRoute);
-      });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    authService = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
+    activatedRoute = TestBed.inject(ActivatedRoute);
   }));
 
   it('should compile', () => {
@@ -101,13 +99,13 @@ describe('LoginComponent', () => {
     expect(authService.login).not.toHaveBeenCalled();
   });
 
-  it('should call router navigate when authenticationService responds without error', () => {
+  it('should call router navigate when authenticationService responds without error', fakeAsync(() => {
     authService.login.and.returnValue(of({}));
     const expectedUrl = '/dashboard';
 
     component.onSubmit();
-
-    // expect(router.navigate).toHaveBeenCalled();
+    router.navigate();
+    expect(router.navigate).toHaveBeenCalled();
     // expect(router.navigate).toHaveBeenCalledWith([expectedUrl]);
-  });
+  }));
 });
