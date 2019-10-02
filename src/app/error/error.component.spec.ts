@@ -35,7 +35,7 @@ describe('BreadcrumbComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create component', () => {
+  it('should be created', () => {
     expect(fixture.componentInstance).toBeDefined();
   });
 

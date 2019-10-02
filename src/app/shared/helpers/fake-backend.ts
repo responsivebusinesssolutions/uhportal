@@ -10,7 +10,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 
-import { ErrorType } from 'src/app/error/enums/error-type.enum';
+import { ErrorType } from 'app/error/enums/error-type.enum';
 import { Role } from '../directives/role/enums/role.enum';
 
 // Array in local storage for registered users

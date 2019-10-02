@@ -1,9 +1,8 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { LoadingService } from 'src/app/shared/components/loading/loading.service';
-
-import { HttpErrorResponse } from '@angular/common/http';
+import { LoadingService } from 'app/shared/components/loading/loading.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -28,7 +27,7 @@ export class MainLayoutComponent implements AfterViewChecked, OnInit {
   }
 
   private getLoadingStatus(): void {
-    this.loadingService.loadingSubject.subscribe((res: boolean | HttpErrorResponse) => {
+    this.loadingService.getLoadingSubject().subscribe((res: boolean | HttpErrorResponse) => {
       if (res instanceof HttpErrorResponse) {
         this.isLoading = false;
         this.router.navigate(['/error']);

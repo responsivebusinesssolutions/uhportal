@@ -10,15 +10,13 @@ describe('AuthContainerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AuthContainerComponent]
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(AuthContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

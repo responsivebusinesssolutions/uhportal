@@ -1,7 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LoadingService {
   private _loadingSubject: Subject<boolean | HttpErrorResponse> = new Subject<boolean | HttpErrorResponse>();
 
-  get loadingSubject(): Subject<boolean | HttpErrorResponse> {
+  getLoadingSubject(): Subject<boolean | HttpErrorResponse> {
     return this._loadingSubject;
   }
 

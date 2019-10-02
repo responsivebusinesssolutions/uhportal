@@ -1,9 +1,9 @@
 import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'app/auth/auth.service';
 
 import { Role } from './enums/role.enum';
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'app/shared/utils/utils';
 
 @Directive({
   selector: '[appRole]'

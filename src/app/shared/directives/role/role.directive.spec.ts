@@ -1,16 +1,16 @@
 import { By } from '@angular/platform-browser';
 import { Component, DebugNode } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MaterialModule } from '../../material/material.module';
 
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'app/auth/auth.service';
 import { NotificationService } from '../../notification/notification.service';
 
 import { RoleDirective } from './role.directive';
 
 import { Role } from './enums/role.enum';
-import { User } from 'src/app/auth/interfaces/user.interface';
+import { User } from 'app/auth/interfaces/user.interface';
 
 @Component({})
 class RoleTestComponent {
@@ -25,7 +25,7 @@ describe('RoleDirective', () => {
   // That's how you test a structural directive...
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, MaterialModule],
+      imports: [HttpClientTestingModule, MaterialModule],
       declarations: [RoleTestComponent, RoleDirective],
       providers: [AuthService, NotificationService]
     }).compileComponents();
@@ -45,7 +45,7 @@ describe('RoleDirective', () => {
     localStorage.removeItem('currentUser');
   });
 
-  it('should create component', () => {
+  it('should be created', () => {
     expect(component).toBeDefined();
   });
 

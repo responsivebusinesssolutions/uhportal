@@ -12,7 +12,8 @@
     "ng": "ng",
     "start": "ng serve",
     "start:proxy": "ng serve --proxy-config proxy.conf.json",
-    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI"
+    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI",
+    "test:watch": "ng test --watch --no-progress --browsers=ChromeHeadlessCI"
   },
   "private": true,
   "dependencies": {

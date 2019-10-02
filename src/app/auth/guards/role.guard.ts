@@ -2,8 +2,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
 import { AuthService } from '../auth.service';
-
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'app/shared/utils/utils';
 
 @Injectable()
 export class RoleGuard implements CanActivate {
