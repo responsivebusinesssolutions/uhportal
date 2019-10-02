@@ -53,16 +53,6 @@ describe('LoginComponent', () => {
       });
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    authService = TestBed.get(AuthService);
-    router = TestBed.inject(Router);
-    activatedRoute = TestBed.inject(ActivatedRoute);
-  });
-
   it('should compile', () => {
     expect(component).toBeTruthy();
   });
@@ -100,5 +90,26 @@ describe('LoginComponent', () => {
 
     expect(authService.login).toHaveBeenCalledTimes(1);
     expect(authService.login).toHaveBeenCalledWith(new LoginInput(username, password));
+  });
+
+  it('should not call authenticationService when form is invalid', () => {
+    authService.login.and.returnValue(of({}));
+    component.loginForm.patchValue({
+      username: 'test'
+    });
+
+    component.onSubmit();
+
+    expect(authService.login).not.toHaveBeenCalled();
+  });
+
+  it('should call router navigate when authenticationService responds without error', () => {
+    authService.login.and.returnValue(of({}));
+    const expectedUrl = '/ dashboard';
+
+    component.onSubmit();
+
+    // expect(router.navigate).toHaveBeenCalledTimes(1);
+    // expect(router.navigate).toHaveBeenCalledWith([expectedUrl]);
   });
 });

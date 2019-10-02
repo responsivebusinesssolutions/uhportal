@@ -80,4 +80,15 @@ describe('RegisterComponent', () => {
       Object({ firstName: 'test', lastName: 'test', username: 'username', password: 'password' })
     );
   });
+
+  it('should not call authenticationService when form is invalid', () => {
+    authService.register.and.returnValue(of({}));
+    component.registerForm.patchValue({
+      username: 'test'
+    });
+
+    component.onSubmit();
+
+    expect(authService.register).not.toHaveBeenCalled();
+  });
 });
