@@ -6,7 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RegisterComponent } from './register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 
 class AuthenticationServiceStub {
@@ -21,9 +21,8 @@ class RouterStub {
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
-  let authService: AuthenticationServiceStub;
-  let router: Router;
-  let activatedRoute: ActivatedRoute;
+  let authService: any;
+  let router: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,11 +30,7 @@ describe('RegisterComponent', () => {
       imports: [MaterialModule, BrowserAnimationsModule, HttpClientTestingModule, ReactiveFormsModule],
       providers: [
         { provide: AuthService, useClass: AuthenticationServiceStub },
-        { provide: Router, useClass: RouterStub },
-        {
-          provide: ActivatedRoute,
-          useValue: { snapshot: { queryParams: { returnUrl: 'home' } } }
-        }
+        { provide: Router, useClass: RouterStub }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -43,9 +38,8 @@ describe('RegisterComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(RegisterComponent);
         component = fixture.componentInstance;
-        activatedRoute = TestBed.inject(ActivatedRoute);
         fixture.detectChanges();
-        authService = TestBed.get(AuthService);
+        authService = TestBed.inject(AuthService);
         router = TestBed.inject(Router);
       });
   }));

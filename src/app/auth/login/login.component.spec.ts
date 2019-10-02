@@ -1,7 +1,8 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { LoginInput } from './../models/login-input.model';
 import { MaterialModule } from './../../shared/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, async } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { LoginComponent } from './login.component';
@@ -24,8 +25,8 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let el: HTMLElement;
-  let authService: AuthenticationServiceStub;
-  let router: Router;
+  let authService: any;
+  let router: any;
   let activatedRoute: ActivatedRoute;
 
   beforeEach(async(() => {
@@ -35,10 +36,7 @@ describe('LoginComponent', () => {
       providers: [
         { provide: AuthService, useClass: AuthenticationServiceStub },
         { provide: Router, useClass: RouterStub },
-        {
-          provide: ActivatedRoute,
-          useValue: { snapshot: { queryParams: { returnUrl: 'home' } } }
-        }
+        { provide: ActivatedRoute, useValue: { snapshot: { queryParams: { returnUrl: '/dashboard' } } } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -46,10 +44,10 @@ describe('LoginComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(LoginComponent);
         component = fixture.componentInstance;
-        activatedRoute = TestBed.inject(ActivatedRoute);
         fixture.detectChanges();
-        authService = TestBed.get(AuthService);
+        authService = TestBed.inject(AuthService);
         router = TestBed.inject(Router);
+        activatedRoute = TestBed.inject(ActivatedRoute);
       });
   }));
 
@@ -105,11 +103,11 @@ describe('LoginComponent', () => {
 
   it('should call router navigate when authenticationService responds without error', () => {
     authService.login.and.returnValue(of({}));
-    const expectedUrl = '/ dashboard';
+    const expectedUrl = '/dashboard';
 
     component.onSubmit();
 
-    // expect(router.navigate).toHaveBeenCalledTimes(1);
+    // expect(router.navigate).toHaveBeenCalled();
     // expect(router.navigate).toHaveBeenCalledWith([expectedUrl]);
   });
 });
