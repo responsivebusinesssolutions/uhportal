@@ -1,35 +1,22 @@
-import { AppRoutingModule } from './app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from './shared/material/material.module';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
-import { TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
-import { RegisterComponent } from './auth/register/register.component';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: DebugElement;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        RouterTestingModule
-      ],
-      declarations: [AppComponent, LoginComponent, MainLayoutComponent, RegisterComponent],
-      schemas: [NO_ERRORS_SCHEMA]
+      declarations: [AppComponent]
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.debugElement.componentInstance;
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  it('should be created', () => {
+    expect(component).toBeTruthy();
   });
 });

@@ -1,4 +1,3 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 import { AuthContainerComponent } from './auth-container.component';
@@ -9,18 +8,15 @@ describe('AuthContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AuthContainerComponent],
-      schemas: [NO_ERRORS_SCHEMA]
+      declarations: [AuthContainerComponent]
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(AuthContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

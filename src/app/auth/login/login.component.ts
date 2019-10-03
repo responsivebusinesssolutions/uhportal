@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { NotificationService } from '../../shared/notification/notification.service';
 
-import { ErrorType } from 'src/app/error/enums/error-type.enum';
+import { ErrorType } from 'app/error/enums/error-type.enum';
 import { LoginInput } from '../models/login-input.model';
 import { NotificationType } from '../../shared/notification/enums/notification-type.enum';
 

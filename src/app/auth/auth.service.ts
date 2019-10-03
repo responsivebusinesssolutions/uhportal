@@ -7,7 +7,7 @@ import { NotificationService } from '../shared/notification/notification.service
 
 import { LoginInput } from './models/login-input.model';
 import { NotificationType } from '../shared/notification/enums/notification-type.enum';
-import { Role } from './enums/role.enum';
+import { Role } from '../shared/directives/role/enums/role.enum';
 import { User } from './interfaces/user.interface';
 import { environment } from '../../environments/environment';
 
@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   getUserRoles(): Array<Role> {
-    return this.currentUserValue.roles;
+    return (JSON.parse(localStorage.getItem('currentUser')) as User).roles;
   }
 
   isLoggedIn(): boolean {

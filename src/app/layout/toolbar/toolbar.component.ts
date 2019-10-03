@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../../auth/auth.service';
 
-import { User } from 'src/app/auth/interfaces/user.interface';
+import { User } from 'app/auth/interfaces/user.interface';
 
 @Component({
   selector: 'app-toolbar',

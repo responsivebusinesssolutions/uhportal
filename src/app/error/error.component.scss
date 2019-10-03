@@ -1,11 +1,12 @@
 @import '../../assets/styles/defaults';
+@import '../../assets/styles/responsive-mixins';
 
 .error {
   color: #444;
-  height: 100%;
+  height: 50%;
   font-weight: bold;
   text-align: center;
-  transform: translateY(50%);
+  transform: translateY(100%);
 
   @include unselectable;
 
@@ -16,11 +17,27 @@
   &__title {
     font-size: 3rem;
     text-transform: uppercase;
+
+    @include responsive-lt(md) {
+      font-size: 2.25rem;
+    }
+
+    @include responsive-lt(sm) {
+      font-size: 1.5rem;
+    }
   }
 
   &__subtitle {
     font-size: 1.5rem;
     margin-top: 1rem;
     text-transform: uppercase;
+
+    @include responsive-lt(md) {
+      font-size: 1.25rem;
+    }
+
+    @include responsive-lt(sm) {
+      font-size: 0.875rem;
+    }
   }
 }

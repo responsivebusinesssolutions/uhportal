@@ -2,8 +2,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
 import { AuthService } from '../auth.service';
-
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'app/shared/utils/utils';
 
 @Injectable()
 export class RoleGuard implements CanActivate {
@@ -16,7 +15,8 @@ export class RoleGuard implements CanActivate {
     // user has the proper permission to visit the path
     if (
       !isGuardedRoute ||
-      (isGuardedRoute && Utils.arraysIntersect(this.authService.getUserRoles(), activatedRouteSnapshot.data.roles))
+      (isGuardedRoute &&
+        Utils.arraysIntersect(this.authService.getUserRoles(), activatedRouteSnapshot.data.roles).length > 0)
     ) {
       return true;
     }

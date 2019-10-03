@@ -12,7 +12,8 @@
     "ng": "ng",
     "start": "ng serve",
     "start:proxy": "ng serve --proxy-config proxy.conf.json",
-    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI"
+    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI",
+    "test:watch": "ng test --watch --no-progress --browsers=ChromeHeadlessCI"
   },
   "private": true,
   "dependencies": {
@@ -53,7 +54,6 @@
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
     "protractor": "~5.4.0",
-    "swagger-ui": "^3.23.11",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "tslint-config-prettier": "^1.18.0",
