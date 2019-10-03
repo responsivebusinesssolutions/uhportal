@@ -1,6 +1,6 @@
 {
   "skipCI": false,
   "hooks": {
-    "pre-commit": "run-s format:fix lint",
+    "pre-commit": "run-s format:fix lint test:ci",
   }
 }
