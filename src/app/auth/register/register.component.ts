@@ -7,6 +7,7 @@ import { NotificationService } from '../../shared/notification/notification.serv
 
 import { ErrorType } from 'app/error/enums/error-type.enum';
 import { NotificationType } from '../../shared/notification/enums/notification-type.enum';
+import { RegisterInput } from '../models/register-input.model';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +37,14 @@ export class RegisterComponent implements OnInit {
 
     this.isLoading = true;
 
-    this.authService.register(this.registerForm.value).subscribe(
+    const registerInput: RegisterInput = new RegisterInput(
+      this.registerForm.get('firstName').value,
+      this.registerForm.get('lastName').value,
+      this.registerForm.get('username').value,
+      this.registerForm.get('password').value
+    );
+
+    this.authService.register(registerInput).subscribe(
       () => {
         this.notificationService.showNotification('Account created successfully!', NotificationType.SUCCESS);
         this.router.navigate(['/auth/login']);

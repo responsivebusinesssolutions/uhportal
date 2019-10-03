@@ -8,6 +8,7 @@ import { RegisterComponent } from './register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
+import { RegisterInput } from '../models/register-input.model';
 
 class AuthenticationServiceStub {
   register = jasmine.createSpy('register');
@@ -67,9 +68,7 @@ describe('RegisterComponent', () => {
     component.onSubmit();
 
     expect(authService.register).toHaveBeenCalledTimes(1);
-    expect(authService.register).toHaveBeenCalledWith(
-      Object({ firstName: 'test', lastName: 'test', username: 'username', password: 'password' })
-    );
+    expect(authService.register).toHaveBeenCalledWith(new RegisterInput('test', 'test', 'username', 'password'));
   });
 
   it('should not call authenticationService when form is invalid', () => {

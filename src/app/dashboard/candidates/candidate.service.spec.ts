@@ -1,5 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NEVER } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { environment } from '@env/environment';
 
@@ -42,11 +43,11 @@ describe('CandidatesService', () => {
       expect(candidate.email).toBe('E-mail 3');
     });
 
-    const req: TestRequest = httpTestingController.expectOne(`${environment.apiUrl}/api/candidates`);
+    const candidatesRequest: TestRequest = httpTestingController.expectOne(`${environment.apiUrl}/api/candidates`);
 
-    expect(req.request.method).toEqual('GET');
+    expect(candidatesRequest.request.method).toEqual('GET');
 
-    req.flush(candidatesMock);
+    candidatesRequest.flush(candidatesMock);
   });
 
   it('should save the candidate', () => {
@@ -69,7 +70,7 @@ describe('CandidatesService', () => {
     const candidateInput: CandidateInput = new CandidateInput('expected@email.com', 'Expected candidate output');
 
     candidateService.saveCandidate(candidateInput).subscribe(
-      () => fail(),
+      () => NEVER,
       (error: HttpErrorResponse) => {
         expect(error.status).toEqual(500);
       }

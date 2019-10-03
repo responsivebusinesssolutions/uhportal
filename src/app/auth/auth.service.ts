@@ -7,10 +7,12 @@ import { NotificationService } from '../shared/notification/notification.service
 
 import { LoginInput } from './models/login-input.model';
 import { NotificationType } from '../shared/notification/enums/notification-type.enum';
+import { RegisterInput } from './models/register-input.model';
 import { Role } from '../shared/directives/role/enums/role.enum';
 import { User } from './interfaces/user.interface';
 import { environment } from '../../environments/environment';
 
+// TODO: HttpResponse might change in the future
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
@@ -26,11 +28,13 @@ export class AuthService {
   }
 
   getAllUsers(): Observable<Array<User>> {
-    return this.httpClient.get<Array<User>>(`${environment.apiUrl}/users`);
+    return this.httpClient.get<Array<User>>(`${environment.apiUrl}/api/users`);
   }
 
   getUserRoles(): Array<Role> {
-    return (JSON.parse(localStorage.getItem('currentUser')) as User).roles;
+    const currentUser: User = JSON.parse(localStorage.getItem('currentUser'));
+
+    return (currentUser && currentUser.roles) || null;
   }
 
   isLoggedIn(): boolean {
@@ -38,7 +42,7 @@ export class AuthService {
   }
 
   login(loginInput: LoginInput): Observable<HttpResponse<any>> {
-    return this.httpClient.post<any>(`${environment.apiUrl}/users/authenticate`, loginInput).pipe(
+    return this.httpClient.post<any>(`${environment.apiUrl}/api/auth/login`, loginInput).pipe(
       map(user => {
         // Login successful if there's a JWT token in the response
         if (user && user.token) {
@@ -59,7 +63,7 @@ export class AuthService {
     this.currentUserSubject.next(null);
   }
 
-  register(user: User): Observable<HttpResponse<any>> {
-    return this.httpClient.post<HttpResponse<any>>(`${environment.apiUrl}/users/register`, user);
+  register(registerInput: RegisterInput): Observable<HttpResponse<any>> {
+    return this.httpClient.post<HttpResponse<any>>(`${environment.apiUrl}/api/auth/register`, registerInput);
   }
 }

@@ -17,7 +17,7 @@ import { Role } from '../directives/role/enums/role.enum';
 import candidatesMock from '@assets/mocks/candidates.json';
 
 // Array in local storage for registered users
-const users = JSON.parse(localStorage.getItem('users')) || [];
+const registeredUsers = JSON.parse(localStorage.getItem('users')) || [];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -37,10 +37,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     // TODO: /api for routes
     function handleRoute() {
       switch (true) {
-        case url.endsWith('/users/authenticate') && method === 'POST':
+        case url.endsWith('/api/auth/login') && method === 'POST':
           return authenticate();
-        case url.endsWith('/users/register') && method === 'POST':
+        case url.endsWith('/api/auth/register') && method === 'POST':
           return register();
+        case url.endsWith('/api/users') && method === 'GET':
+          return users();
         case url.endsWith('/api/candidates') && method === 'GET':
           return candidates();
         default:
@@ -52,7 +54,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     // Route functions
     function authenticate() {
       const { username, password } = body;
-      const user = users.find(u => u.username === username && u.password === password);
+      const user = registeredUsers.find(u => u.username === username && u.password === password);
 
       if (!user) {
         return error(ErrorType.INVALID_USERNAME_OR_PASSWORD);
@@ -74,17 +76,21 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       return of(new HttpResponse({ status: 200, body: responseBody }));
     }
 
+    function users() {
+      return ok(users);
+    }
+
     function register() {
       const user = body;
 
-      if (users.find(u => u.username === user.username)) {
+      if (registeredUsers.find(u => u.username === user.username)) {
         return error(ErrorType.USERNAME_IS_ALREADY_TAKEN);
       }
 
-      user.id = users.length ? Math.max(...users.map(u => u.id)) + 1 : 1;
+      user.id = users.length ? Math.max(...registeredUsers.map(u => u.id)) + 1 : 1;
       user.roles = [Role.INTERNAL];
 
-      users.push(user);
+      registeredUsers.push(user);
       localStorage.setItem('users', JSON.stringify(users));
 
       return ok();
