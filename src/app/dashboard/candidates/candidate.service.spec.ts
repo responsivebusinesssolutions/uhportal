@@ -38,7 +38,8 @@ describe('CandidatesService', () => {
 
       const candidate: Candidate = candidates.find(c => c.id === 3);
 
-      expect(candidate.email).toBe('E-mail #3');
+      expect(candidate).toBeTruthy();
+      expect(candidate.email).toBe('E-mail 3');
     });
 
     const req: TestRequest = httpTestingController.expectOne(`${environment.apiUrl}/api/candidates`);
