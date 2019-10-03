@@ -1,5 +1,5 @@
 import { By } from '@angular/platform-browser';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async, fakeAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatTableDataSource, MatTableModule } from '@angular/material';
@@ -35,14 +35,6 @@ describe('CandidateListComponent', () => {
 
   it('should be created', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should display breadcrumb', () => {
-    fixture.detectChanges();
-
-    const breadcrumb: HTMLHeadingElement = (el.nativeElement as HTMLElement).querySelector('app-breadcrumb');
-
-    expect(breadcrumb).toBeTruthy();
   });
 
   it('should display the candidates list', () => {
