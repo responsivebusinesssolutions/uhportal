@@ -1,5 +1,5 @@
 [
   { "email": "E-mail 1", "id": 1, "name": "Name 1" },
   { "email": "E-mail 2", "id": 2, "name": "Name 2" },
-  { "email": "E-mail 1", "id": 1, "name": "Name 3" }
+  { "email": "E-mail 3", "id": 3, "name": "Name 3" }
 ]

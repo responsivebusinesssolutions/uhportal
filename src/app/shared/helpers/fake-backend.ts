@@ -10,8 +10,11 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 
+import { Candidate } from 'app/dashboard/candidates/models/candidate.model';
 import { ErrorType } from 'app/error/enums/error-type.enum';
 import { Role } from '../directives/role/enums/role.enum';
+
+import candidatesMock from '@assets/mocks/candidates.json';
 
 // Array in local storage for registered users
 const users = JSON.parse(localStorage.getItem('users')) || [];
@@ -31,12 +34,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         .pipe(dematerialize())
     );
 
+    // TODO: /api for routes
     function handleRoute() {
       switch (true) {
         case url.endsWith('/users/authenticate') && method === 'POST':
           return authenticate();
         case url.endsWith('/users/register') && method === 'POST':
           return register();
+        case url.endsWith('/api/candidates') && method === 'GET':
+          return candidates();
         default:
           // Pass through any requests not handled above
           return next.handle(request);
@@ -60,6 +66,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         token: 'fake-jwt-token',
         username: user.username
       });
+    }
+
+    function candidates() {
+      const responseBody = Object.values(candidatesMock as Array<Candidate>);
+
+      return of(new HttpResponse({ status: 200, body: responseBody }));
     }
 
     function register() {
