@@ -4,8 +4,6 @@
   "scripts": {
     "build": "ng build --prod",
     "coverage": "ng test --codeCoverage --watch",
-    "e2e": "ng e2e",
-    "e2e:ci": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
     "format:fix": "pretty-quick --staged",
     "json-server": "json-server --watch db.json",
     "lint": "ng lint",
@@ -53,7 +51,6 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
-    "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "tslint-config-prettier": "^1.18.0",

@@ -15,16 +15,14 @@ import { environment } from '../../environments/environment';
 // TODO: HttpResponse might change in the future
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  currentUser$: BehaviorSubject<User>;
 
   constructor(private httpClient: HttpClient, private notificationService: NotificationService) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.currentUser$ = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
   }
 
   public get currentUserValue(): User {
-    return this.currentUserSubject.value;
+    return this.currentUser$.value;
   }
 
   getAllUsers(): Observable<Array<User>> {
@@ -48,7 +46,7 @@ export class AuthService {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
 
-          this.currentUserSubject.next(user);
+          this.currentUser$.next(user);
         }
 
         return user;
@@ -60,7 +58,7 @@ export class AuthService {
     localStorage.removeItem('currentUser');
 
     this.notificationService.showNotification('Logged out successfully!', NotificationType.SUCCESS);
-    this.currentUserSubject.next(null);
+    this.currentUser$.next(null);
   }
 
   register(registerInput: RegisterInput): Observable<HttpResponse<any>> {

@@ -5,6 +5,7 @@ import { NEVER } from 'rxjs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TestBed, async } from '@angular/core/testing';
 import { environment } from '@env/environment';
+import { skip } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
 import { NotificationService } from 'app/shared/notification/notification.service';
@@ -91,13 +92,15 @@ describe('AuthService', () => {
     authService.logout();
 
     expect(localStorage.getItem('currentUser')).toBeFalsy();
-    expect(notificationService.showNotification).toHaveBeenCalledTimes(1);
+    expect(notificationService.showNotification).toHaveBeenCalled();
     expect(notificationService.showNotification).toHaveBeenCalledWith(
       'Logged out successfully!',
       NotificationType.SUCCESS
     );
 
-    // TODO: BehaviorSubject / Observable test
+    authService.currentUser$.subscribe((currentUser: User) => {
+      expect(currentUser).toBe(null);
+    });
   });
 
   it('should return one role', () => {
@@ -153,8 +156,7 @@ describe('AuthService', () => {
     req.flush('Registering user failed', { status: 500, statusText: 'Internal server error' });
   });
 
-  // TODO: Observable / Subject test
-  xit('should return true if user is logged in', () => {
+  it('should return true if user is logged in', () => {
     const loggedInUser: User = {
       firstName: 'First name',
       id: 33,
@@ -164,13 +166,17 @@ describe('AuthService', () => {
       username: 'Username 33'
     };
 
-    localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
+    // In order to skip the first default value which is null, we must use skip
+    authService.currentUser$.pipe(skip(1)).subscribe((currentUser: User) => {
+      expect(currentUser).toEqual(loggedInUser);
+    });
 
-    expect(authService.isLoggedIn()).toBeTruthy();
+    authService.currentUser$.next(loggedInUser);
+
+    localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
   });
 
-  // TODO: Observable / Subject test
-  xit('should return false if user is not logged in', () => {
+  it('should return false if user is not logged in', () => {
     const loggedInUser: User = {
       firstName: 'First name',
       id: 33,
@@ -185,6 +191,7 @@ describe('AuthService', () => {
     authService.logout();
 
     expect(authService.isLoggedIn()).toBeFalsy();
+    expect(authService.currentUser$.getValue()).toBe(null);
   });
 
   it('should log user in', () => {
@@ -204,8 +211,13 @@ describe('AuthService', () => {
       expect(loggedInUser).toBeTruthy();
       expect(loggedInUser.username).toBe(loginInput.username);
 
-      // TODO: Observable / Subject test
       expect(localStorage.getItem('currentUser')).toBeTruthy();
+
+      authService.currentUser$.pipe(skip(1)).subscribe(() => {
+        expect(authService.currentUser$.getValue()).toEqual(loggedInUser);
+      });
+
+      authService.currentUser$.next(loggedInUser);
     });
 
     const req: TestRequest = httpTestingController.expectOne(`${environment.apiUrl}/api/auth/login`);
