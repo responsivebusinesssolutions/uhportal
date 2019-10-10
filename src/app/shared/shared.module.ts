@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { I18nModule } from '../i18n/i18n.module';
 import { MaterialModule } from './material/material.module';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -11,11 +12,12 @@ import { RoleDirective } from './directives/role/role.directive';
 
 @NgModule({
   declarations: [BreadcrumbComponent, LoadingSpinnerComponent, RoleComponent, RoleDirective],
-  imports: [CommonModule, FormsModule, MaterialModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, I18nModule, MaterialModule, ReactiveFormsModule, RouterModule],
   exports: [
     BreadcrumbComponent,
     CommonModule,
     FormsModule,
+    I18nModule,
     MaterialModule,
     LoadingSpinnerComponent,
     ReactiveFormsModule,
