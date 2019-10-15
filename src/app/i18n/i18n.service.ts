@@ -61,11 +61,14 @@ export class I18nService {
       return new BehaviorSubject<LanguageCode>(LanguageCode[localStorage.getItem('lang')]);
     } else {
       // Otherwise set default language code to browser's language
-      localStorage.setItem('lang', LanguageCode[navigator.language]);
+      // We only need the major lang code for now
+      const newDefaultLanguage: LanguageCode = LanguageCode[navigator.language.split('-')[0]];
+
+      localStorage.setItem('lang', newDefaultLanguage);
 
       this.getTranslations();
 
-      return new BehaviorSubject<LanguageCode>(LanguageCode[navigator.language]);
+      return new BehaviorSubject<LanguageCode>(newDefaultLanguage);
     }
   }
 
