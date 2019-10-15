@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
 import { SharedModule } from '../../shared/shared.module';
+import { I18nPipe } from '../../i18n/i18n.pipe';
 
 class AuthenticationServiceStub {
   login = jasmine.createSpy('login');
@@ -37,6 +38,7 @@ describe('LoginComponent', () => {
       providers: [
         { provide: AuthService, useClass: AuthenticationServiceStub },
         { provide: Router, useClass: RouterStub },
+        I18nPipe,
         { provide: ActivatedRoute, useValue: { snapshot: { queryParams: { returnUrl: '/dashboard' } } } }
       ],
       schemas: [NO_ERRORS_SCHEMA]

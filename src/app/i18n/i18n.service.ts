@@ -72,7 +72,7 @@ export class I18nService {
     }
   }
 
-  private interpolateParams(translatedText: string, args: Array<string | number>): string {
+  private interpolateParams(translatedText: string, args?: Array<string | number>): string {
     let newText: string = translatedText.substr(0, translatedText.length);
 
     if (args && args.length > 0) {

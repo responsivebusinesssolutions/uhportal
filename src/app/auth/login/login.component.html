@@ -37,7 +37,7 @@
               </div>
             </ng-container>
             <ng-container *ngIf="!isLoading">
-              <mat-icon>exit_to_app</mat-icon> <span>&nbsp;{{ 'LoginComponent.login' | i18n }}</span>
+              <mat-icon>exit_to_app</mat-icon>&nbsp;<span [translation]="'LoginComponent.login'"></span>
             </ng-container>
           </button>
         </form>
