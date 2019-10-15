@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialog, MatDialogRef, MatIconRegistry } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { I18nService } from '../../i18n/i18n.service';
@@ -18,12 +17,7 @@ export class LanguageSelectorComponent implements OnDestroy, OnInit {
   currentLanguage: LanguageCode;
   subscription: Subscription;
 
-  constructor(
-    private i18nService: I18nService,
-    private iconRegistry: MatIconRegistry,
-    private matDialog: MatDialog,
-    private sanitizer: DomSanitizer
-  ) {}
+  constructor(private i18nService: I18nService, private matDialog: MatDialog) {}
 
   ngOnDestroy(): void {
     this.unsubscribeFromLanguageChangeEvents();
@@ -49,18 +43,6 @@ export class LanguageSelectorComponent implements OnDestroy, OnInit {
     });
   }
 
-  private loadFlagIcon(): void {
-    this.iconRegistry.addSvgIcon(
-      'en-flag',
-      this.sanitizer.bypassSecurityTrustResourceUrl(`assets/images/flags/en.svg`)
-    );
-
-    this.iconRegistry.addSvgIcon(
-      'hu-flag',
-      this.sanitizer.bypassSecurityTrustResourceUrl(`assets/images/flags/hu.svg`)
-    );
-  }
-
   private setLanguage(languageCode: LanguageCode): void {
     this.i18nService.setLanguage(languageCode);
   }
@@ -68,8 +50,6 @@ export class LanguageSelectorComponent implements OnDestroy, OnInit {
   private subscribeToLanguageChangeEvents(): void {
     this.subscription = this.i18nService.currentLang.subscribe((event: LanguageCode) => {
       this.currentLanguage = event;
-
-      this.loadFlagIcon();
     });
   }
 

@@ -9,11 +9,11 @@ import { I18nService } from './i18n.service';
 export class I18nPipe implements PipeTransform {
   constructor(private i18nService: I18nService) {}
 
-  transform(value: string, ...args: any[]): any {
+  transform(value: string, ...args: Array<string | number>): any {
     if (!value || value.length === 0) {
       return;
     }
 
-    return this.i18nService.translate(value);
+    return this.i18nService.translate(value, args);
   }
 }
