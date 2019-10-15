@@ -91,7 +91,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       user.roles = [Role.INTERNAL];
 
       registeredUsers.push(user);
-      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('users', JSON.stringify(registeredUsers));
 
       return ok();
     }
