@@ -17,9 +17,6 @@
             <span>&nbsp;({{ 'LanguageSelectorDialogComponent.selected' | i18n }})</span>
           </ng-container>
         </div>
-        <div class="language-selector-dialog__content__language-table__row__flag">
-          <img alt="English flag" src="assets/images/flags/en.svg" />
-        </div>
       </div>
       <div
         (click)="onSetTemporaryLanguage('hu')"
@@ -33,9 +30,6 @@
           <ng-container *ngIf="selectedLanguage === 'hu'">
             <span>&nbsp;({{ 'LanguageSelectorDialogComponent.selected' | i18n }})</span>
           </ng-container>
-        </div>
-        <div class="language-selector-dialog__content__language-table__row__flag">
-          <img alt="Hungarian flag" src="assets/images/flags/hu.svg" />
         </div>
       </div>
     </div>
