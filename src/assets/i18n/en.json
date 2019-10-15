@@ -14,11 +14,18 @@
     "cancel": "Cancel"
   },
   "LanguageSelectorComponent": {
+    "currentLanguage": "Current language",
     "languageSelector": "Language selector",
-    "selectAnotherLanguage": "Select another language"
+    "languages": {
+      "en": "English",
+      "hu": "Hungarian"
+    },
+    "selectAnotherLanguage": "Select another language",
+    "selectedLanguage": "Selected language"
   },
   "LanguageSelectorDialogComponent": {
-    "selectLanguage": "Select language"
+    "selectLanguage": "Select language",
+    "selected": "Selected"
   },
   "LoginComponent": {
     "invalidUsernameOrPassword": "Invalid username / password",

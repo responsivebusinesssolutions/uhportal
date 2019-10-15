@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
+import { SharedModule } from '../../shared/shared.module';
 
 class AuthenticationServiceStub {
   login = jasmine.createSpy('login');
@@ -31,7 +32,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, BrowserAnimationsModule, HttpClientTestingModule, ReactiveFormsModule],
+      imports: [MaterialModule, BrowserAnimationsModule, HttpClientTestingModule, ReactiveFormsModule, SharedModule],
       declarations: [LoginComponent],
       providers: [
         { provide: AuthService, useClass: AuthenticationServiceStub },

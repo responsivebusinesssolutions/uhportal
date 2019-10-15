@@ -6,15 +6,12 @@
     mat-button
   >
     <div class="language-selector__button__content">
-      <div>
-        {{ 'LanguageSelectorComponent.selectAnotherLanguage' | i18n }}
+      <div class="language-selector__button__content__language">
+        <mat-icon>language</mat-icon>
       </div>
-
-      <div class="language-selector__button__content__image">
-        <img
-          alt="{{ 'LanguageSelectorComponent.currentLanguage' | i18n }}"
-          src="assets/images/flags/{{ currentLanguage }}.svg"
-        />
+      <div class="language-selector__button__content__label">
+        <div>{{ 'LanguageSelectorComponent.selectedLanguage' | i18n }}:</div>
+        <div>{{ 'LanguageSelectorComponent.languages.' + currentLanguage | i18n }}</div>
       </div>
     </div>
   </button>

@@ -32,16 +32,6 @@
         padding-left: 0.5rem;
         transition: $default-transition;
 
-        &__flag {
-          height: 1.875rem;
-          padding-right: 0.5rem;
-          width: 3rem;
-
-          img {
-            @include flag;
-          }
-        }
-
         &--active {
           background-color: rgba(20, 121, 107, 1);
           color: $color-white;

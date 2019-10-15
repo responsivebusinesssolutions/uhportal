@@ -12,9 +12,9 @@
         class="language-selector-dialog__content__language-table__row"
       >
         <div>
-          English
+          {{ 'LanguageSelectorComponent.languages.en' | i18n }}
           <ng-container *ngIf="selectedLanguage === 'en'">
-            <span>&nbsp;(Selected)</span>
+            <span>&nbsp;({{ 'LanguageSelectorDialogComponent.selected' | i18n }})</span>
           </ng-container>
         </div>
         <div class="language-selector-dialog__content__language-table__row__flag">
@@ -29,9 +29,9 @@
         class="language-selector-dialog__content__language-table__row"
       >
         <div>
-          Hungarian
+          {{ 'LanguageSelectorComponent.languages.hu' | i18n }}
           <ng-container *ngIf="selectedLanguage === 'hu'">
-            <span>&nbsp;(Selected)</span>
+            <span>&nbsp;({{ 'LanguageSelectorDialogComponent.selected' | i18n }})</span>
           </ng-container>
         </div>
         <div class="language-selector-dialog__content__language-table__row__flag">

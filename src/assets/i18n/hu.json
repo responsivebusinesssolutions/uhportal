@@ -16,10 +16,16 @@
   "LanguageSelectorComponent": {
     "currentLanguage": "Kiválasztott nyelv",
     "languageSelector": "Nyelv kiválasztása",
-    "selectAnotherLanguage": "Másik nyelv kiválasztása"
+    "languages": {
+      "en": "Angol",
+      "hu": "Magyar"
+    },
+    "selectAnotherLanguage": "Másik nyelv kiválasztása",
+    "selectedLanguage": "Választott nyelv"
   },
   "LanguageSelectorDialogComponent": {
-    "selectLanguage": "Nyelv kiválasztása"
+    "selectLanguage": "Nyelv kiválasztása",
+    "selected": "Kiválasztott"
   },
   "LoginComponent": {
     "invalidUsernameOrPassword": "Hibás felhasználónév / jelszó",

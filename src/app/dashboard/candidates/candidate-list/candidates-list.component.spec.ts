@@ -1,8 +1,9 @@
 import { By } from '@angular/platform-browser';
-import { ComponentFixture, TestBed, async, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatTableDataSource, MatTableModule } from '@angular/material';
+
 import { of } from 'rxjs';
 
 import { CandidateService } from '../candidate.service';
@@ -12,6 +13,7 @@ import { CandidateListComponent } from './candidate-list.component';
 import { Candidate } from '../models/candidate.model';
 
 import candidatesMock from '@assets/mocks/candidates.json';
+import { I18nPipe } from '../../../i18n/i18n.pipe';
 
 describe('CandidateListComponent', () => {
   let candidateService: any;
@@ -23,7 +25,7 @@ describe('CandidateListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, MatTableModule],
-      declarations: [CandidateListComponent],
+      declarations: [CandidateListComponent, I18nPipe],
       providers: [{ provide: CandidateService, useValue: candidateServiceSpy }]
     }).compileComponents();
 
@@ -68,9 +70,9 @@ describe('CandidateListComponent', () => {
       // Header row
       const headerRow: HTMLTableRowElement = tableRows[0];
 
-      expect(headerRow.cells[0].innerHTML).toBe('ID');
-      expect(headerRow.cells[1].innerHTML).toBe('Name');
-      expect(headerRow.cells[2].innerHTML).toBe('E-mail');
+      expect(headerRow.cells[0].innerHTML).toBe('CandidateListComponent.id');
+      expect(headerRow.cells[1].innerHTML).toBe('CandidateListComponent.name');
+      expect(headerRow.cells[2].innerHTML).toBe('CandidateListComponent.email');
 
       // Data rows
       const row2: HTMLTableRowElement = tableRows[2];

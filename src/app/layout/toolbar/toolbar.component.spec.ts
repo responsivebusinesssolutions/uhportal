@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from '../../shared/shared.module';
 
 import { ToolbarComponent } from './toolbar.component';
 
@@ -11,7 +12,7 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatSnackBarModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, MatSnackBarModule, RouterTestingModule, SharedModule],
       declarations: [ToolbarComponent]
     }).compileComponents();
 
