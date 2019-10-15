@@ -5,25 +5,34 @@
 <div class="candidate-list">
   <div class="candidate-list__table-header">
     <mat-form-field>
-      <input matInput (keyup)="onApplyFilter($event.target.value)" placeholder="Filter" />
+      <input
+        (keyup)="onApplyFilter($event.target.value)"
+        matInput
+        placeholder="{{ 'CandidateListComponent.filter' | i18n }}"
+      />
     </mat-form-field>
   </div>
-  <table mat-table class="candidate-list__table" matSort aria-label="Candidate list">
+  <table
+    attr.aria-label="{{ 'CandidateListComponent.candidateList' | i18n }}"
+    class="candidate-list__table"
+    mat-table
+    matSort
+  >
     <!-- ID column -->
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CandidateListComponent.id' | i18n }}</th>
       <td mat-cell *matCellDef="let row">{{ row.id }}</td>
     </ng-container>
 
     <!-- Name column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CandidateListComponent.name' | i18n }}</th>
       <td mat-cell *matCellDef="let row">{{ row.name }}</td>
     </ng-container>
 
     <!-- E-mail column -->
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CandidateListComponent.email' | i18n }}</th>
       <td mat-cell *matCellDef="let row">{{ row.email }}</td>
     </ng-container>
 

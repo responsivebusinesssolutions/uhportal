@@ -16,7 +16,7 @@
             class="toolbar__menu__left__tile"
             routerLinkActive="toolbar__menu__left__tile--active"
           >
-            Candidates
+            {{ 'ToolbarComponent.candidates' | i18n }}
           </div>
         </ng-container>
       </div>
@@ -24,27 +24,32 @@
         <ng-container *ngIf="!isLoggedIn()">
           <ng-container *ngIf="isLoginPage()">
             <a routerLink="/auth/register">
-              <button aria-label="Login" color="accent" mat-button>
+              <button attr.aria-label="{{ 'ToolbarComponent.createAccount' | i18n }}" color="accent" mat-button>
                 <mat-icon>add_circle</mat-icon>
-                Create account
+                {{ 'ToolbarComponent.createAccount' | i18n }}
               </button>
             </a>
           </ng-container>
 
           <ng-container *ngIf="isRegisterPage()">
             <a routerLink="/auth/login">
-              <button aria-label="Login" color="accent" mat-button>
+              <button attr.aria-label="{{ 'ToolbarComponent.login' | i18n }}" color="accent" mat-button>
                 <mat-icon>exit_to_app</mat-icon>
-                Login
+                {{ 'ToolbarComponent.login' | i18n }}
               </button>
             </a>
           </ng-container>
         </ng-container>
 
         <ng-container *ngIf="isLoggedIn()">
-          <button (click)="onLogout()" aria-label="Logout" color="accent" mat-button>
+          <button
+            (click)="onLogout()"
+            attr.aria-label="{{ 'ToolbarComponent.logout' | i18n }}"
+            color="accent"
+            mat-button
+          >
             <mat-icon>exit_to_app</mat-icon>
-            Logout
+            {{ 'ToolbarComponent.logout' | i18n }}
           </button>
         </ng-container>
       </div>

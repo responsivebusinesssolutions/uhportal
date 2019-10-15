@@ -1,0 +1,21 @@
+<div class="language-selector">
+  <button
+    (click)="onOpenDialog()"
+    attr.aria-label="{{ 'LanguageSelectorComponent.languageSelector' | i18n }}"
+    class="language-selector__button"
+    mat-button
+  >
+    <div class="language-selector__button__content">
+      <div>
+        {{ 'LanguageSelectorComponent.selectAnotherLanguage' | i18n }}
+      </div>
+
+      <div class="language-selector__button__content__image">
+        <img
+          alt="{{ 'LanguageSelectorComponent.currentLanguage' | i18n }}"
+          src="assets/images/flags/{{ currentLanguage }}.svg"
+        />
+      </div>
+    </div>
+  </button>
+</div>

@@ -1,6 +1,42 @@
 {
-  "cancel": "Mégse",
-  "register": {
-    "createAccount": "Felhasználó létrehozása"
+  "CandidateListComponent": {
+    "candidateList": "Jelentkezők listája",
+    "email": "E-mail",
+    "filter": "Szűrés...",
+    "id": "ID",
+    "name": "Név"
+  },
+  "ErrorComponent": {
+    "somethingWentWrong": "Hiba történt",
+    "pleaseTryAgainLater": "Kérjük, próbálja újra később"
+  },
+  "General": {
+    "cancel": "Mégse"
+  },
+  "LanguageSelectorComponent": {
+    "currentLanguage": "Kiválasztott nyelv",
+    "languageSelector": "Nyelv kiválasztása",
+    "selectAnotherLanguage": "Másik nyelv kiválasztása"
+  },
+  "LanguageSelectorDialogComponent": {
+    "selectLanguage": "Nyelv kiválasztása"
+  },
+  "LoginComponent": {
+    "invalidUsernameOrPassword": "Hibás felhasználónév / jelszó",
+    "login": "Bejelentkezés",
+    "password": "Jelszó",
+    "passwordIsRequired": "A jelszó kitöltése kötelező",
+    "username": "Felhasználónév",
+    "usernameIsRequired": "A felhasználónév kitöltése kötelező"
+  },
+  "RegisterComponent": {
+    "createAccount": "Felhasználó létrehozása",
+    "passwordIsRequired": "A jelszó kitöltése kötelező"
+  },
+  "ToolbarComponent": {
+    "candidates": "Jelentkezők",
+    "createAccount": "Felhasználó létrehozása",
+    "login": "Bejelentkezés",
+    "logout": "Kijelentkezés"
   }
 }

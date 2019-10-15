@@ -1,0 +1,22 @@
+@import '../../../assets/styles/defaults';
+
+.language-selector {
+  &__button {
+    width: 100%;
+
+    &__content {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+
+      &__image {
+        height: 25px;
+        width: 32px;
+
+        @include flag;
+      }
+    }
+  }
+
+  margin-right: 0.5rem;
+}

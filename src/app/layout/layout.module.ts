@@ -1,3 +1,4 @@
+import { LanguageSelectorModule } from './language-selector/language-selector.module';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 
@@ -6,8 +7,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [MainLayoutComponent, ToolbarComponent],
-  imports: [SharedModule],
-  exports: [ToolbarComponent]
+  imports: [LanguageSelectorModule, SharedModule],
+  exports: [LanguageSelectorModule]
 })
 export class LayoutModule {
   static forRoot(): ModuleWithProviders {

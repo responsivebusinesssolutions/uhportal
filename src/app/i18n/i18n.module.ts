@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { I18nPipe } from './pipes/i18n.pipe';
+import { I18nPipe } from './i18n.pipe';
 
 @NgModule({
   declarations: [I18nPipe],
