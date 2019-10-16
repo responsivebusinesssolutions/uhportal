@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatButton, MatDialog, MatDialogRef } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { I18nService } from '../../i18n/i18n.service';
@@ -27,7 +27,7 @@ export class LanguageSelectorComponent implements OnDestroy, OnInit {
     this.subscribeToLanguageChangeEvents();
   }
 
-  onOpenDialog(): void {
+  onOpenDialog(languageSelectorButton: MatButton): void {
     const dialogRef: MatDialogRef<LanguageSelectorDialogComponent> = this.matDialog.open(
       LanguageSelectorDialogComponent,
       {
@@ -36,10 +36,15 @@ export class LanguageSelectorComponent implements OnDestroy, OnInit {
       }
     );
 
-    dialogRef.afterClosed().subscribe((selectedLanguage: LanguageCode) => {
+    dialogRef.beforeClosed().subscribe((selectedLanguage: LanguageCode) => {
       if (selectedLanguage && selectedLanguage !== this.i18nService.currentLanguageValue) {
         this.setLanguage(selectedLanguage);
       }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      // Remove focus from button after click
+      (languageSelectorButton._elementRef.nativeElement as HTMLButtonElement).blur();
     });
   }
 

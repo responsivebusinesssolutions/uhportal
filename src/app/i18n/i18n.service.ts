@@ -9,7 +9,7 @@ import { Utils } from '../shared/utils/utils';
   providedIn: 'root'
 })
 export class I18nService {
-  languageChanged: EventEmitter<void> = new EventEmitter<void>();
+  languageChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private currentLang$: BehaviorSubject<LanguageCode> = this.initDefaultLanguage();
   private translations: { [key: string]: string };
@@ -28,7 +28,11 @@ export class I18nService {
     localStorage.setItem('lang', selectedLanguage);
 
     this.currentLang$.next(selectedLanguage);
-    this.getTranslations();
+    this.languageChanged.emit(true);
+
+    setTimeout(() => {
+      this.getTranslations();
+    }, 500);
   }
 
   translate(key: string, args?: Array<string | number>): string {
@@ -44,6 +48,7 @@ export class I18nService {
       this.httpClient.get<{ [key: string]: string }>(`assets/i18n/${currentLanguage}.json`).subscribe(
         (res: { [key: string]: string }) => {
           this.translations = Utils.flattenObject(res);
+          this.languageChanged.emit(false);
         },
         (err: HttpErrorResponse) => {
           console.error(err);

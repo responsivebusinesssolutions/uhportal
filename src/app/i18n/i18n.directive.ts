@@ -1,4 +1,5 @@
-import { AfterViewChecked, Directive, ElementRef, Input } from '@angular/core';
+import { AfterViewChecked, Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { I18nService } from './i18n.service';
 
@@ -8,9 +9,12 @@ import { I18nPipe } from './i18n.pipe';
   // tslint:disable-next-line
   selector: '[translation]'
 })
-export class I18nDirective implements AfterViewChecked {
+export class I18nDirective implements AfterViewChecked, OnDestroy, OnInit {
   @Input() params: Array<string | number>;
   @Input() translation: string;
+
+  private languageChangedLoading: boolean;
+  private languageChangedSubscriber: Subscription;
 
   constructor(private el: ElementRef, private i18nPipe: I18nPipe, private i18nService: I18nService) {}
 
@@ -18,8 +22,16 @@ export class I18nDirective implements AfterViewChecked {
     this.updateModel();
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribeFromLanguageChangedEvent();
+  }
+
+  ngOnInit(): void {
+    this.subscribeToLanguageChangedEvent();
+  }
+
   private updateModel(): void {
-    if (!this.i18nPipe.transform(this.translation, this.params)) {
+    if (!this.i18nPipe.transform(this.translation, this.params) || this.languageChangedLoading) {
       const placeholderWidth: number = this.translation.split('.')[this.translation.split('.').length - 1].length;
       (this.el.nativeElement as HTMLElement).classList.add('ghost-element');
       (this.el.nativeElement as HTMLElement).innerText = '------';
@@ -29,5 +41,13 @@ export class I18nDirective implements AfterViewChecked {
       (this.el.nativeElement as HTMLElement).classList.remove('ghost-element');
       (this.el.nativeElement as HTMLElement).style.width = 'auto';
     }
+  }
+
+  private subscribeToLanguageChangedEvent(): void {
+    this.i18nService.languageChanged.subscribe(res => (this.languageChangedLoading = res));
+  }
+
+  private unsubscribeFromLanguageChangedEvent(): void {
+    this.languageChangedSubscriber.unsubscribe();
   }
 }
