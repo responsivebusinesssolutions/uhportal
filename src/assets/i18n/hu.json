@@ -21,7 +21,7 @@
       "hu": "Magyar"
     },
     "selectAnotherLanguage": "Másik nyelv kiválasztása",
-    "selectedLanguage": "Választott nyelv"
+    "selectedLanguage": "Választott nyelv:"
   },
   "LanguageSelectorDialogComponent": {
     "selectLanguage": "Nyelv kiválasztása",
@@ -37,7 +37,11 @@
   },
   "RegisterComponent": {
     "createAccount": "Felhasználó létrehozása",
-    "passwordIsRequired": "A jelszó kitöltése kötelező"
+    "firstName": "Keresztnév",
+    "lastName": "Vezetéknév",
+    "password": "Jelszó",
+    "passwordIsRequired": "A jelszó kitöltése kötelező",
+    "username": "Felhasználónév"
   },
   "ToolbarComponent": {
     "candidates": "Jelentkezők",

@@ -2,13 +2,13 @@
   <div class="login">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ 'LoginComponent.login' | i18n }}</mat-card-title>
+        <mat-card-title translation="LoginComponent.login"></mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
           <div class="login__row">
             <mat-form-field>
-              <mat-label for="username">{{ 'LoginComponent.username' | i18n }}</mat-label>
+              <mat-label for="username" translation="LoginComponent.username"></mat-label>
               <input formControlName="username" matInput type="text" />
               <mat-error *ngIf="loginForm.get('username').hasError('required')">{{
                 'LoginComponent.usernameIsRequired' | i18n
@@ -20,7 +20,7 @@
           </div>
           <div class="login__row">
             <mat-form-field>
-              <mat-label for="password">{{ 'LoginComponent.password' | i18n }}</mat-label>
+              <mat-label for="password" translation="LoginComponent.password"></mat-label>
               <input formControlName="password" matInput type="password" />
               <mat-error *ngIf="loginForm.get('password').hasError('required')">{{
                 'LoginComponent.passwordIsRequired' | i18n
@@ -37,7 +37,7 @@
               </div>
             </ng-container>
             <ng-container *ngIf="!isLoading">
-              <mat-icon>exit_to_app</mat-icon>&nbsp;<span [translation]="'LoginComponent.login'"></span>
+              <mat-icon>exit_to_app</mat-icon>&nbsp;<span translation="LoginComponent.login"></span>
             </ng-container>
           </button>
         </form>

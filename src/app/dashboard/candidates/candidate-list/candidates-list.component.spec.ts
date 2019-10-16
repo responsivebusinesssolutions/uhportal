@@ -1,5 +1,5 @@
 import { By } from '@angular/platform-browser';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatTableDataSource, MatTableModule } from '@angular/material';
@@ -46,7 +46,7 @@ describe('CandidateListComponent', () => {
     expect(list.length).toBe(1);
   });
 
-  it('should display 3 rows in the candidates list', () => {
+  it('should display 3 rows in the candidates list', fakeAsync(() => {
     const candidates: Array<Candidate> = Object.values(candidatesMock);
     candidateService.getCandidates.and.returnValue(of(candidates));
 
@@ -70,9 +70,11 @@ describe('CandidateListComponent', () => {
       // Header row
       const headerRow: HTMLTableRowElement = tableRows[0];
 
-      expect(headerRow.cells[0].innerHTML).toBe('CandidateListComponent.id');
-      expect(headerRow.cells[1].innerHTML).toBe('CandidateListComponent.name');
-      expect(headerRow.cells[2].innerHTML).toBe('CandidateListComponent.email');
+      tick();
+
+      expect(headerRow.cells[0].innerHTML).toBe('');
+      expect(headerRow.cells[1].innerHTML).toBe('');
+      expect(headerRow.cells[2].innerHTML).toBe('');
 
       // Data rows
       const row2: HTMLTableRowElement = tableRows[2];
@@ -81,5 +83,5 @@ describe('CandidateListComponent', () => {
       expect(row2.cells[1].innerHTML).toBe('Name 2');
       expect(row2.cells[2].innerHTML).toBe('E-mail 2');
     });
-  });
+  }));
 });

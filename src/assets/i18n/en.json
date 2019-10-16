@@ -21,7 +21,7 @@
       "hu": "Hungarian"
     },
     "selectAnotherLanguage": "Select another language",
-    "selectedLanguage": "Selected language"
+    "selectedLanguage": "Selected language:"
   },
   "LanguageSelectorDialogComponent": {
     "selectLanguage": "Select language",
@@ -37,7 +37,11 @@
   },
   "RegisterComponent": {
     "createAccount": "Create account",
-    "passwordIsRequired": "The password field is required"
+    "firstName": "First name",
+    "lastName": "Last name",
+    "password": "Password",
+    "passwordIsRequired": "The password field is required",
+    "username": "Username"
   },
   "ToolbarComponent": {
     "candidates": "Candidates",

@@ -1,16 +1,16 @@
+import { BehaviorSubject } from 'rxjs';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 
 import { LanguageCode } from './enums/language-code.enum';
 import { Utils } from '../shared/utils/utils';
-import { BehaviorSubject } from 'rxjs';
 
-// TODO: ghost text
-// TODO: parameter interpolation
 @Injectable({
   providedIn: 'root'
 })
 export class I18nService {
+  languageChanged: EventEmitter<void> = new EventEmitter<void>();
+
   private currentLang$: BehaviorSubject<LanguageCode> = this.initDefaultLanguage();
   private translations: { [key: string]: string };
 
@@ -32,7 +32,7 @@ export class I18nService {
   }
 
   translate(key: string, args?: Array<string | number>): string {
-    const translatedText: string = (this.translations && this.translations[key]) || key;
+    const translatedText: string = (this.translations && this.translations[key]) || null;
 
     return this.interpolateParams(translatedText, args);
   }
@@ -73,7 +73,7 @@ export class I18nService {
   }
 
   private interpolateParams(translatedText: string, args?: Array<string | number>): string {
-    let newText: string = translatedText.substr(0, translatedText.length);
+    let newText: string = translatedText ? translatedText.substr(0, translatedText.length) : null;
 
     if (args && args.length > 0) {
       for (let i = 0; i < args.length; i++) {

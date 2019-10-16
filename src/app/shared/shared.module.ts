@@ -6,19 +6,17 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import { GhostTextComponent } from './components/ghost-text/ghost-text.component';
 import { LoadingSpinnerComponent } from './components/loading/loading-spinner/loading-spinner.component';
 import { RoleComponent } from './directives/role/role.component';
 import { RoleDirective } from './directives/role/role.directive';
 
 @NgModule({
-  declarations: [BreadcrumbComponent, GhostTextComponent, LoadingSpinnerComponent, RoleComponent, RoleDirective],
+  declarations: [BreadcrumbComponent, LoadingSpinnerComponent, RoleComponent, RoleDirective],
   imports: [CommonModule, FormsModule, I18nModule, MaterialModule, ReactiveFormsModule, RouterModule],
   exports: [
     BreadcrumbComponent,
     CommonModule,
     FormsModule,
-    GhostTextComponent,
     I18nModule,
     MaterialModule,
     LoadingSpinnerComponent,
