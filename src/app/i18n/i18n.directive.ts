@@ -44,7 +44,9 @@ export class I18nDirective implements AfterViewChecked, OnDestroy, OnInit {
   }
 
   private subscribeToLanguageChangedEvent(): void {
-    this.i18nService.languageChanged.subscribe(res => (this.languageChangedLoading = res));
+    this.languageChangedSubscriber = this.i18nService.languageChanged.subscribe(
+      res => (this.languageChangedLoading = res)
+    );
   }
 
   private unsubscribeFromLanguageChangedEvent(): void {
