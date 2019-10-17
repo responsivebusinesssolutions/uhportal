@@ -4,34 +4,24 @@
   </div>
   <div class="language-selector-dialog__content">
     <div class="language-selector-dialog__content__language-table">
-      <div
-        (click)="onSetTemporaryLanguage('en')"
-        [ngClass]="{
-          'language-selector-dialog__content__language-table__row--active': tmpSelectedLanguage === 'en'
-        }"
-        class="language-selector-dialog__content__language-table__row"
-      >
-        <div>
-          {{ 'LanguageSelectorComponent.languages.en' | i18n }}
-          <ng-container *ngIf="selectedLanguage === 'en'">
-            <span>&nbsp;({{ 'LanguageSelectorDialogComponent.selected' | i18n }})</span>
-          </ng-container>
-        </div>
-      </div>
-      <div
-        (click)="onSetTemporaryLanguage('hu')"
-        [ngClass]="{
-          'language-selector-dialog__content__language-table__row--active': tmpSelectedLanguage === 'hu'
-        }"
-        class="language-selector-dialog__content__language-table__row"
-      >
-        <div>
-          {{ 'LanguageSelectorComponent.languages.hu' | i18n }}
-          <ng-container *ngIf="selectedLanguage === 'hu'">
-            <span>&nbsp;({{ 'LanguageSelectorDialogComponent.selected' | i18n }})</span>
-          </ng-container>
-        </div>
-      </div>
+      <ng-container *ngIf="availableLanguages">
+        <ng-container *ngFor="let lang of availableLanguages">
+          <div
+            (click)="onSetTemporaryLanguage(lang)"
+            [ngClass]="{
+              'language-selector-dialog__content__language-table__row--active': tmpSelectedLanguage === lang
+            }"
+            class="language-selector-dialog__content__language-table__row"
+          >
+            <div>
+              {{ 'LanguageSelectorComponent.languages.' + lang | i18n }}
+              <ng-container *ngIf="selectedLanguage === lang">
+                <span>&nbsp;({{ 'LanguageSelectorDialogComponent.selected' | i18n }})</span>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
     </div>
   </div>
   <div class="language-selector-dialog__footer">

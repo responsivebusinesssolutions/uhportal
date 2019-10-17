@@ -32,7 +32,7 @@ export class I18nService {
 
     setTimeout(() => {
       this.getTranslations();
-    }, 500);
+    }, 250);
   }
 
   translate(key: string, args?: Array<string | number>): string {

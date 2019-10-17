@@ -9,6 +9,7 @@ import { LanguageCode } from '../../../i18n/enums/language-code.enum';
   styleUrls: ['./language-selector-dialog.component.scss']
 })
 export class LanguageSelectorDialogComponent implements OnInit {
+  availableLanguages: Array<string>;
   tmpSelectedLanguage: LanguageCode;
 
   constructor(
@@ -17,6 +18,7 @@ export class LanguageSelectorDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initAvailableLanguages();
     this.initTmpSelectedLanguage();
   }
 
@@ -26,6 +28,16 @@ export class LanguageSelectorDialogComponent implements OnInit {
 
   onSetTemporaryLanguage(languageCode: LanguageCode): void {
     this.tmpSelectedLanguage = languageCode;
+  }
+
+  private initAvailableLanguages(): void {
+    const languages: Array<string> = new Array<string>();
+
+    for (const code of Object.keys(LanguageCode)) {
+      languages.push(LanguageCode[code]);
+    }
+
+    this.availableLanguages = languages;
   }
 
   private initTmpSelectedLanguage(): void {
