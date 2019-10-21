@@ -1,4 +1,5 @@
 import { AuthRoutingModule } from './auth-routing.module';
+import { LayoutModule } from '../layout/layout.module';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 
@@ -8,7 +9,7 @@ import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [AuthContainerComponent, LoginComponent, RegisterComponent],
-  imports: [AuthRoutingModule, SharedModule]
+  imports: [AuthRoutingModule, LayoutModule, SharedModule]
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders {

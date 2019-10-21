@@ -2,27 +2,27 @@
   <div class="register">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Create account</mat-card-title>
+        <mat-card-title translation="RegisterComponent.createAccount"></mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
           <div class="register__row">
             <mat-form-field>
-              <mat-label for="firstName">First name</mat-label>
+              <mat-label for="firstName" translation="RegisterComponent.firstName"></mat-label>
               <input formControlName="firstName" matInput type="text" />
               <mat-error *ngIf="registerForm.get('firstName').hasError('required')">First name is required</mat-error>
             </mat-form-field>
           </div>
           <div class="register__row">
             <mat-form-field>
-              <mat-label for="lastName">Last name</mat-label>
+              <mat-label for="lastName" translation="RegisterComponent.lastName">Last name</mat-label>
               <input formControlName="lastName" matInput type="text" />
               <mat-error *ngIf="registerForm.get('lastName').hasError('required')">Last name is required</mat-error>
             </mat-form-field>
           </div>
           <div class="register__row">
             <mat-form-field>
-              <mat-label for="username">Username</mat-label>
+              <mat-label for="username" translation="RegisterComponent.username"></mat-label>
               <input formControlName="username" matInput type="text" />
               <mat-error *ngIf="registerForm.get('username').hasError('required')">Username is required</mat-error>
               <mat-error *ngIf="registerForm.get('username').hasError(errorTypes.USERNAME_IS_ALREADY_TAKEN)"
@@ -32,9 +32,11 @@
           </div>
           <div class="register__row">
             <mat-form-field>
-              <mat-label for="password">Password</mat-label>
+              <mat-label for="password" translation="RegisterComponent.password"></mat-label>
               <input formControlName="password" matInput type="password" />
-              <mat-error *ngIf="registerForm.get('password').invalid">Password is required</mat-error>
+              <mat-error *ngIf="registerForm.get('password').invalid">{{
+                'RegisterComponent.passwordIsRequired' | i18n
+              }}</mat-error>
             </mat-form-field>
           </div>
           <button [disabled]="isLoading" class="register__loading-button" color="primary" mat-raised-button>
@@ -44,7 +46,7 @@
               </div>
             </ng-container>
             <ng-container *ngIf="!isLoading">
-              <mat-icon>add_circle</mat-icon> <span>&nbsp;Create account</span>
+              <mat-icon>add_circle</mat-icon>&nbsp; <span translation="RegisterComponent.createAccount"></span>
             </ng-container>
           </button>
         </form>

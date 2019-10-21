@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { RegisterInput } from '../models/register-input.model';
+import { SharedModule } from '../../shared/shared.module';
+import { I18nPipe } from '../../i18n/i18n.pipe';
 
 class AuthenticationServiceStub {
   register = jasmine.createSpy('register');
@@ -28,10 +30,11 @@ describe('RegisterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [RegisterComponent],
-      imports: [MaterialModule, BrowserAnimationsModule, HttpClientTestingModule, ReactiveFormsModule],
+      imports: [MaterialModule, BrowserAnimationsModule, HttpClientTestingModule, ReactiveFormsModule, SharedModule],
       providers: [
         { provide: AuthService, useClass: AuthenticationServiceStub },
-        { provide: Router, useClass: RouterStub }
+        { provide: Router, useClass: RouterStub },
+        I18nPipe
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();

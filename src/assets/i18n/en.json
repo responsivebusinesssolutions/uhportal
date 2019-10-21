@@ -1,0 +1,52 @@
+{
+  "CandidateListComponent": {
+    "candidateList": "Candidate list",
+    "email": "E-mail",
+    "filter": "Filter...",
+    "id": "ID",
+    "name": "Name"
+  },
+  "ErrorComponent": {
+    "somethingWentWrong": "Something went wrong",
+    "pleaseTryAgainLater": "Please try again later"
+  },
+  "General": {
+    "cancel": "Cancel"
+  },
+  "LanguageSelectorComponent": {
+    "currentLanguage": "Current language",
+    "languageSelector": "Language selector",
+    "languages": {
+      "en": "English",
+      "hu": "Hungarian"
+    },
+    "selectAnotherLanguage": "Select another language",
+    "selectedLanguage": "Selected language:"
+  },
+  "LanguageSelectorDialogComponent": {
+    "selectLanguage": "Select language",
+    "selected": "Selected"
+  },
+  "LoginComponent": {
+    "invalidUsernameOrPassword": "Invalid username / password",
+    "login": "Login",
+    "password": "Password",
+    "passwordIsRequired": "Password field is required",
+    "username": "Username",
+    "usernameIsRequired": "Username field is required"
+  },
+  "RegisterComponent": {
+    "createAccount": "Create account",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "password": "Password",
+    "passwordIsRequired": "The password field is required",
+    "username": "Username"
+  },
+  "ToolbarComponent": {
+    "candidates": "Candidates",
+    "createAccount": "Create account",
+    "login": "Login",
+    "logout": "Logout"
+  }
+}

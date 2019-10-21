@@ -2,28 +2,32 @@
   <div class="login">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Login</mat-card-title>
+        <mat-card-title translation="LoginComponent.login"></mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
           <div class="login__row">
             <mat-form-field>
-              <mat-label for="username">Username</mat-label>
+              <mat-label for="username" translation="LoginComponent.username"></mat-label>
               <input formControlName="username" matInput type="text" />
-              <mat-error *ngIf="loginForm.get('username').hasError('required')">Username is required</mat-error>
-              <mat-error *ngIf="loginForm.get('username').hasError('invalidUsernameOrPassword')"
-                >Invalid username / password</mat-error
-              >
+              <mat-error *ngIf="loginForm.get('username').hasError('required')">{{
+                'LoginComponent.usernameIsRequired' | i18n
+              }}</mat-error>
+              <mat-error *ngIf="loginForm.get('username').hasError('invalidUsernameOrPassword')">{{
+                'LoginComponent.invalidUsernameOrPassword' | i18n
+              }}</mat-error>
             </mat-form-field>
           </div>
           <div class="login__row">
             <mat-form-field>
-              <mat-label for="password">Password</mat-label>
+              <mat-label for="password" translation="LoginComponent.password"></mat-label>
               <input formControlName="password" matInput type="password" />
-              <mat-error *ngIf="loginForm.get('password').hasError('required')">Password is required</mat-error>
-              <mat-error *ngIf="loginForm.get('password').hasError('invalidUsernameOrPassword')"
-                >Invalid username / password</mat-error
-              >
+              <mat-error *ngIf="loginForm.get('password').hasError('required')">{{
+                'LoginComponent.passwordIsRequired' | i18n
+              }}</mat-error>
+              <mat-error *ngIf="loginForm.get('password').hasError('invalidUsernameOrPassword')">{{
+                'LoginComponent.invalidUsernameOrPassword' | i18n
+              }}</mat-error>
             </mat-form-field>
           </div>
           <button [disabled]="isLoading" class="login__loading-button" color="primary" mat-raised-button>
@@ -32,7 +36,9 @@
                 <mat-spinner [diameter]="20" color="primary"></mat-spinner>
               </div>
             </ng-container>
-            <ng-container *ngIf="!isLoading"> <mat-icon>exit_to_app</mat-icon> <span>&nbsp;Login</span> </ng-container>
+            <ng-container *ngIf="!isLoading">
+              <mat-icon>exit_to_app</mat-icon>&nbsp;<span translation="LoginComponent.login"></span>
+            </ng-container>
           </button>
         </form>
       </mat-card-content>

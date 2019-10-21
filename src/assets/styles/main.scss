@@ -1,3 +1,4 @@
+@import '../styles/animations';
 @import '../styles/defaults';
 @import '../styles/theme';
 
@@ -21,8 +22,26 @@ body {
   outline: none;
 }
 
+.mat-button {
+  padding: 0 0.5rem !important;
+}
+
 h1 {
   color: #444;
+
+  @include unselectable;
+}
+
+.ghost-element {
+  align-items: center;
+  animation: ghostElementAnimation 1000ms infinite;
+  background-color: #aaa;
+  border-radius: 0.25rem;
+  color: transparent;
+  display: inline-flex;
+  height: 1rem;
+  justify-content: center;
+  opacity: 0.2;
 
   @include unselectable;
 }

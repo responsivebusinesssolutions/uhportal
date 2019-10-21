@@ -1,0 +1,45 @@
+@keyframes ghostElementAnimation {
+  0% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(0.98);
+  }
+
+  20% {
+    transform: scale(0.96);
+  }
+
+  30% {
+    transform: scale(0.94);
+  }
+
+  40% {
+    transform: scale(0.93);
+  }
+
+  50% {
+    transform: scale(0.92);
+  }
+
+  60% {
+    transform: scale(0.93);
+  }
+
+  70% {
+    transform: scale(0.94);
+  }
+
+  80% {
+    transform: scale(0.96);
+  }
+
+  90% {
+    transform: scale(0.98);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

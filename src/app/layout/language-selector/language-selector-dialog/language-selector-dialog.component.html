@@ -1,0 +1,40 @@
+<div class="language-selector-dialog">
+  <div class="language-selector-dialog__header">
+    <h2>{{ 'LanguageSelectorDialogComponent.selectLanguage' | i18n }}</h2>
+  </div>
+  <div class="language-selector-dialog__content">
+    <div class="language-selector-dialog__content__language-table">
+      <ng-container *ngIf="availableLanguages">
+        <ng-container *ngFor="let lang of availableLanguages">
+          <div
+            (click)="onSetTemporaryLanguage(lang)"
+            [ngClass]="{
+              'language-selector-dialog__content__language-table__row--active': tmpSelectedLanguage === lang
+            }"
+            class="language-selector-dialog__content__language-table__row"
+          >
+            <div>
+              {{ 'LanguageSelectorComponent.languages.' + lang | i18n }}
+              <ng-container *ngIf="selectedLanguage === lang">
+                <span>&nbsp;({{ 'LanguageSelectorDialogComponent.selected' | i18n }})</span>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+  <div class="language-selector-dialog__footer">
+    <button mat-button (click)="onClickCancel()" tabindex="-1">
+      {{ 'General.cancel' | i18n }}
+    </button>
+    <button
+      [disabled]="tmpSelectedLanguage === selectedLanguage"
+      [mat-dialog-close]="tmpSelectedLanguage"
+      color="primary"
+      mat-raised-button
+    >
+      {{ 'LanguageSelectorDialogComponent.selectLanguage' | i18n }}
+    </button>
+  </div>
+</div>

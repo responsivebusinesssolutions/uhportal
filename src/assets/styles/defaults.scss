@@ -4,6 +4,7 @@
 $background-color: #eeeeee;
 $base-width: 1190px;
 $default-transition: 500ms;
+$footer-height: 2rem;
 $toolbar-height: 4rem;
 
 // COLORS
@@ -12,7 +13,6 @@ $color-white-hover: rgba(255, 255, 255, 0.71);
 $color-primary: map_get($theme-color-primary, 600);
 $color-accent: map_get($theme-color-accent, 500);
 
-// MIXINS
 @mixin unselectable {
   -moz-user-select: none;
   -ms-user-select: none;

@@ -1,10 +1,13 @@
 import { Router, Routes } from '@angular/router';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ErrorComponent } from './error.component';
+
+import { I18nPipe } from '../i18n/i18n.pipe';
 
 @Component({})
 class HomeComponent {}
@@ -21,8 +24,8 @@ describe('BreadcrumbComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes(testRoutes)],
-      declarations: [ErrorComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes(testRoutes)],
+      declarations: [ErrorComponent, I18nPipe],
       providers: [Location]
     }).compileComponents();
 

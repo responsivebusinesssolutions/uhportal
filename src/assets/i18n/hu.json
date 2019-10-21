@@ -1,0 +1,52 @@
+{
+  "CandidateListComponent": {
+    "candidateList": "Jelentkezők listája",
+    "email": "E-mail",
+    "filter": "Szűrés...",
+    "id": "ID",
+    "name": "Név"
+  },
+  "ErrorComponent": {
+    "somethingWentWrong": "Hiba történt",
+    "pleaseTryAgainLater": "Kérjük, próbálja újra később"
+  },
+  "General": {
+    "cancel": "Mégse"
+  },
+  "LanguageSelectorComponent": {
+    "currentLanguage": "Kiválasztott nyelv",
+    "languageSelector": "Nyelv kiválasztása",
+    "languages": {
+      "en": "Angol",
+      "hu": "Magyar"
+    },
+    "selectAnotherLanguage": "Másik nyelv kiválasztása",
+    "selectedLanguage": "Választott nyelv:"
+  },
+  "LanguageSelectorDialogComponent": {
+    "selectLanguage": "Nyelv kiválasztása",
+    "selected": "Kiválasztott"
+  },
+  "LoginComponent": {
+    "invalidUsernameOrPassword": "Hibás felhasználónév / jelszó",
+    "login": "Bejelentkezés",
+    "password": "Jelszó",
+    "passwordIsRequired": "A jelszó kitöltése kötelező",
+    "username": "Felhasználónév",
+    "usernameIsRequired": "A felhasználónév kitöltése kötelező"
+  },
+  "RegisterComponent": {
+    "createAccount": "Felhasználó létrehozása",
+    "firstName": "Keresztnév",
+    "lastName": "Vezetéknév",
+    "password": "Jelszó",
+    "passwordIsRequired": "A jelszó kitöltése kötelező",
+    "username": "Felhasználónév"
+  },
+  "ToolbarComponent": {
+    "candidates": "Jelentkezők",
+    "createAccount": "Felhasználó létrehozása",
+    "login": "Bejelentkezés",
+    "logout": "Kijelentkezés"
+  }
+}
